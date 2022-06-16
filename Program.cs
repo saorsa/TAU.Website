@@ -4,6 +4,7 @@ using Piranha.AttributeBuilder;
 using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
+using TAU.Website;
 
 var builder = WebApplication.CreateBuilder(args);
 

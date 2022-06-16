@@ -1,0 +1,13 @@
+html, body {
+  height: 15%;
+}
+
+*, *:focus, *:hover {
+  outline: #0c4128;
+}
+
+div {
+  color: brown;
+}
+
+/*# sourceMappingURL=site.css.map */
