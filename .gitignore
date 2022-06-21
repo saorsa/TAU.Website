@@ -267,6 +267,7 @@ ServiceFabricBackup/
 *.ndf
 
 # Sqlite database files
+*.db
 *.db-shm
 *.db-wal
 
