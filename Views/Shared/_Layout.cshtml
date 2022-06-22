@@ -26,11 +26,51 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden))
                 {
-                    <li class="nav-item@(item.Id == WebApp.PageId || item.HasChild(WebApp.PageId) ? " active" : "")">
-                        <a class="nav-link" href="@WebApp.Url(item)">@item.MenuTitle</a>
-                    </li>
+                    @if (item.Items.Count > 0)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="@WebApp.Url(item)" id="navbarDropdown" data-toggle="dropdown">
+                                @item.MenuTitle
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                @foreach (var child in item.Items)
+                                {
+                                    if (child.Items.Count > 0)
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" href="@WebApp.Url(child)"> @child.MenuTitle &raquo</a>
+                                            <ul class="submenu dropdown-menu">
+                                                @foreach (var grandChild in child.Items)
+                                                {
+                                                    <li>
+                                                        <a class="dropdown-item" href="@WebApp.Url(grandChild)"> @grandChild.MenuTitle</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" href="@WebApp.Url(child)">@child.MenuTitle</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@WebApp.Url(item)">@item.MenuTitle</a>
+                        </li>
+                    }
                 }
             </ul>
         </div>
