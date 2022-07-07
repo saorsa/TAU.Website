@@ -1,2 +1,23 @@
-@model TModel
+@model Piranha.Models.SitemapItem
 
+@if (@Model.Items.Count > 0)
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="@WebApp.Url(Model)" id="navbarDropdown" data-toggle="dropdown">
+            @Model.MenuTitle
+        </a>
+        <ul class="dropdown-menu dropdown-submenu">
+
+            @foreach (var child in Model.Items)
+            {
+                @await Html.PartialAsync("RecursiveNavigation", child)
+            }
+        </ul>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" href="@WebApp.Url(Model)">@Model.MenuTitle</a>
+    </li>
+}
