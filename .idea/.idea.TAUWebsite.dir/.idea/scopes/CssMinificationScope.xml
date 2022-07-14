@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="CssMinificationScope" pattern="file[rider.module]:wwwroot/css/*.css&amp;&amp;!file:wwwroot/css/*.min.css" />
+</component>
