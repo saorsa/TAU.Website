@@ -30,8 +30,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
-                @await Html.PartialAsync("Navigation")
-                @* RECURSIVE NAVIGATION *@
                  @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden))
                  { 
                      @await Html.PartialAsync("RecursiveNavigation",  item)
