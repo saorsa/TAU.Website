@@ -174,18 +174,6 @@ header.has-image .dimmer {
   border-color: #f94c3b;
 }
 
-html, body {
-  height: 15%;
-}
-
-*, *:focus, *:hover {
-  outline: #0c4128;
-}
-
-div {
-  color: brown;
-}
-
 @media (min-width: 992px) {
   .dropdown-menu .dropdown-toggle:after {
     border-top: 0.3em solid transparent;

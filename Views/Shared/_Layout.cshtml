@@ -31,11 +31,11 @@
                 </button>
                 
                 @await Html.PartialAsync("Navigation")
-                @* RECURISVE NAVIGATION
-                @* @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden)) *@
-                @* { *@
-                @*     @await Html.PartialAsync("RecursiveNavigation",  item) *@
-                @* } *@
+                @* RECURSIVE NAVIGATION *@
+                 @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden))
+                 { 
+                     @await Html.PartialAsync("RecursiveNavigation",  item)
+                 } 
             </ul>
         </div>
     </div>

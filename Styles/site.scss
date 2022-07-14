@@ -7,17 +7,6 @@
 @import "inc/blocks";
 @import "inc/posts";
 @import "inc/pagination";
-html, body {
-  height: 15%;
-}
-
-*, *:focus, *:hover {
-  outline: #0c4128;
-}
-
-div {
-  color: brown;
-}
 
 @media (min-width: 992px){
   .dropdown-menu .dropdown-toggle:after{
