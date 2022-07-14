@@ -6,6 +6,8 @@
   "author": "Piranha CMS",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "csso-cli": "^3.0.0",
+    "sass": "^1.53.0"
   }
 }
