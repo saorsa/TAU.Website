@@ -3,7 +3,7 @@
 @if (@Model.Items.Count > 0)
 {
     <li class="@(Model.ParentId == null ? "nav-item dropdown" : "")">
-        <a class="@(Model.ParentId == null ? "nav-link dropdown-toggle" : "dropdown-item")" href="@WebApp.Url(Model)" id="navbarDropdown" data-toggle="dropdown">
+        <a class="@(Model.ParentId == null ? "nav-link dropdown-toggle" : "dropdown-item")" href="@WebApp.Url(Model)" data-toggle="@(Model.ParentId == null ? "dropdown" : "")">
             @Model.MenuTitle @(Model.ParentId == null ? "" : ">>")
         </a>
         <ul class=" @(Model.ParentId == null ? "dropdown-menu dropdown-submenu" : "submenu dropdown-menu")">
@@ -17,7 +17,7 @@
 }
 else
 {
-    <li class="nav-item @(Model.ParentId == null ? "nav-item" : "")">
-        <a class="nav-link @(Model.ParentId == null ? "nav-link" : "dropdown-item")" href="@WebApp.Url(Model)">@Model.MenuTitle</a>
+    <li class="@(Model.ParentId == null ? "nav-item" : "")">
+        <a class="@(Model.ParentId == null ? "nav-link" : "dropdown-item")" href="@WebApp.Url(Model)">@Model.MenuTitle</a>
     </li>
 }
