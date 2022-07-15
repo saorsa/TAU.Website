@@ -5,9 +5,12 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using TAU.Website;
+using TAU.Website.Services;
+using TAU.Website.Services.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<ISeedService, SeedService>();
 builder.AddPiranha(options =>
 {
     /**
@@ -75,3 +78,4 @@ app.UsePiranha(options =>
 });
 
 app.Run();
+

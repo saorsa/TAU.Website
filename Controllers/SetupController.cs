@@ -29,7 +29,7 @@ namespace TAU.Website.Controllers
         }
 
         [Route("/seed")]
-        public async Task<IActionResult> Seed()
+        public async Task<IActionResult> Seed23()
         {
             var images = new Dictionary<string, Guid>();
 
@@ -53,7 +53,7 @@ namespace TAU.Website.Controllers
                     });
                 }
             }
-
+            
             // Add blog page
             var blogPage = await StandardArchive.CreateAsync(_api);
             blogPage.Id = Guid.NewGuid();
