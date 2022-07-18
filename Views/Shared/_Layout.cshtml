@@ -26,12 +26,14 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
-                @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden))
-                {
-                    <li class="nav-item@(item.Id == WebApp.PageId || item.HasChild(WebApp.PageId) ? " active" : "")">
-                        <a class="nav-link" href="@WebApp.Url(item)">@item.MenuTitle</a>
-                    </li>
-                }
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                 @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden))
+                 { 
+                     @await Html.PartialAsync("RecursiveNavigation",  item)
+                 } 
             </ul>
         </div>
     </div>

@@ -1,0 +1,34 @@
+@model Piranha.Models.SitemapItem
+@{
+    if (@Model.Items.Count > 0)
+    {
+        <li class="@(Model.ParentId == null ? "nav-item dropdown" : "nav-item")">
+            @if (Model.ParentId == null)
+            {
+                <a class="nav-link dropdown-toggle" href="@WebApp.Url(Model)" data-toggle="dropdown">
+                    @Model.MenuTitle
+                </a>
+            }
+            else
+            {
+                <a class="dropdown-item" href="@WebApp.Url(Model)">
+                    @Model.MenuTitle >>
+                </a>
+            }
+
+            <ul class=" @(Model.ParentId == null ? "dropdown-menu dropdown-submenu" : "submenu dropdown-menu")">
+
+                @foreach (var child in Model.Items)
+                {
+                    @await Html.PartialAsync("RecursiveNavigation", child)
+                }
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="@(Model.ParentId == null ? "nav-link" : "dropdown-item")" href="@WebApp.Url(Model)">@Model.MenuTitle</a>
+        </li>
+    }
+}
