@@ -21,9 +21,7 @@ public class SeedController : Controller
     [Route("/customSeed")]
     public async Task<IActionResult> Seed()
     {
-        var asd = await this._seedService.SeedData();
-
-
+        await this._seedService.SeedData();
         return Ok();
     }
 }
