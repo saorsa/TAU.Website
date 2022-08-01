@@ -5,6 +5,7 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using TAU.Website;
+using TAU.Website.Models.Custom_Blocks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,10 @@ app.UsePiranha(options =>
 {
     // Initialize Piranha
     App.Init(options.Api);
+    
+    // Register custom components
+    App.Blocks.Register<Newsletter>();
+    App.Blocks.Register<WhitePaper>();
 
     // Build content types
     new ContentTypeBuilder(options.Api)
@@ -73,5 +78,6 @@ app.UsePiranha(options =>
     options.UseTinyMCE();
     options.UseIdentity();
 });
+
 
 app.Run();
