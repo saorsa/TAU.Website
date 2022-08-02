@@ -49,6 +49,8 @@ builder.AddPiranha(options =>
      */
 });
 
+builder.Services.Configure<GoogleReCaptchaConfig>(builder.Configuration.GetSection("GoogleReCaptcha"));
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
