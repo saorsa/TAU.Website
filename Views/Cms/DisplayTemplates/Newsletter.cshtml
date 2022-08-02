@@ -1,0 +1,16 @@
+@model TAU.Website.Models.Custom_Blocks.Newsletter
+
+@{
+    Layout = null;
+}
+<h1>Newsletter</h1>
+@using (Html.BeginForm("PostNewsletter", "Newsletter", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+    <div>
+        <input type="submit" value="Subscribe"/>
+    </div>
+}
