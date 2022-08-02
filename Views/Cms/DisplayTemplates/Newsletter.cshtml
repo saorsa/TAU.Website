@@ -3,12 +3,14 @@
 @{
     Layout = null;
 }
-
-<h1>Newsletter custom block</h1>
-
+<h1>Newsletter</h1>
 @using (Html.BeginForm("PostNewsletter", "Newsletter", FormMethod.Post))
 {
-    @Html.TextBoxFor(m => m.Email)
-
-    <input type="submit" value="Subscribe" />
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+    <div>
+        <input type="submit" value="Subscribe"/>
+    </div>
 }
