@@ -6,6 +6,7 @@ using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using TAU.Website;
 using TAU.Website.Models.Custom_Blocks;
+using TAU.Website.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,7 @@ builder.AddPiranha(options =>
 });
 
 builder.Services.Configure<GoogleReCaptchaConfig>(builder.Configuration.GetSection("GoogleReCaptcha"));
+builder.Services.AddTransient(typeof(GoogleReCaptchaService));
 
 var app = builder.Build();
 

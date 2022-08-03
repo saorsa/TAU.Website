@@ -1,4 +1,7 @@
 @model TAU.Website.Models.Custom_Blocks.WhitePaper
+@using Microsoft.Extensions.Options
+@using TAU.Website
+@inject IOptions<GoogleReCaptchaConfig> GoogleRecaptchaConfig
 
 @{
     Layout = null;
@@ -7,26 +10,40 @@
 @using (Html.BeginForm("PostWhitePaper", "WhitePaper", FormMethod.Post))
 {
     <div>
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name)
+        <label asp-for="Name">Name</label>
+        <input type="text" id="whitePaperName" asp-for="Name" name="Name">
     </div>
     <div>
-        @Html.LabelFor(m => m.Company)
-        @Html.TextBoxFor(m => m.Company)
+        <label asp-for="Company">Company</label>
+        <input type="text" id="whitePaperCompany" asp-for="Company" name="Company">
     </div>
     <div>
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email)
+        <label asp-for="Email">Email</label>
+        <input type="text" id="whitePaperEmail" asp-for="Email" name="Email">
     </div>
     <div>
-        @Html.LabelFor(m => m.Phone)
-        @Html.TextBoxFor(m => m.Phone)
+        <label asp-for="Phone">Phone</label>
+        <input type="text" id="whitePaperPhone" asp-for="Phone" name="Phone">
     </div>
     <div>
-        @Html.LabelFor(m => m.Position)
-        @Html.TextBoxFor(m => m.Position)
+        <label asp-for="Position">Position</label>
+        <input type="text" id="whitePaperPosition" asp-for="Position" name="Position">
+    </div>
+    <div>
+        <input type="hidden" id="whitePaperReCaptchaToken" asp-for="Token" name="Token"/>
+
     </div>
     <div>
         <input type="submit" value="Subscribe"/>
     </div>
 }
+
+<script>
+    $(function(){
+      grecaptcha.ready(function() {
+        grecaptcha.execute('@GoogleRecaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
+            document.getElementById("whitePaperReCaptchaToken").value = token;
+        });
+      });
+    })
+</script>

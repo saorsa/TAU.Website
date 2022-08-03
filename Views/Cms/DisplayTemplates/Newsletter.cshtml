@@ -1,4 +1,7 @@
+@using TAU.Website
+@using Microsoft.Extensions.Options
 @model TAU.Website.Models.Custom_Blocks.Newsletter
+@inject IOptions<GoogleReCaptchaConfig> GoogleRecaptchaConfig
 
 @{
     Layout = null;
@@ -7,10 +10,23 @@
 @using (Html.BeginForm("PostNewsletter", "Newsletter", FormMethod.Post))
 {
     <div>
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email)
+        <label asp-for="Email">Email</label>
+        <input type="text" id="newsletterEmail" asp-for="Email" name="Email">
+    </div>
+    <div>
+        <input type="hidden" id="newsLetterReCaptchaToken" asp-for="Token" name="Token"/>
     </div>
     <div>
         <input type="submit" value="Subscribe"/>
     </div>
 }
+
+<script>
+    $(function(){
+      grecaptcha.ready(function() {
+        grecaptcha.execute('@GoogleRecaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
+            document.getElementById("newsLetterReCaptchaToken").value = token;
+        });
+      });
+    })
+</script>
