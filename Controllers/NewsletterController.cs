@@ -12,21 +12,24 @@ public class NewsletterController : Controller
     private readonly IApi _api;
     private readonly IModelLoader _loader;
     private readonly GoogleReCaptchaService _googleReCaptchaService;
+    private readonly INewsletterService _newsletterService;
 
-    public NewsletterController(IApi api, IModelLoader loader, GoogleReCaptchaService googleReCaptchaService)
+    public NewsletterController(IApi api, IModelLoader loader, GoogleReCaptchaService googleReCaptchaService, INewsletterService newsletterService )
     {
         _api = api;
         _loader = loader;
         _googleReCaptchaService = googleReCaptchaService;
+        _newsletterService = newsletterService;
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostNewsletter(Newsletter newsletter)
+    public async Task<IActionResult> PostNewsletter(NewsletterViewModel newsletterViewModel)
     {
-        var googleReCaptchaResult = await this._googleReCaptchaService.Verify(newsletter.Token);
+        var googleReCaptchaResult = await this._googleReCaptchaService.Verify(newsletterViewModel.Token);
         if (googleReCaptchaResult)
         {
-            return Ok(newsletter);
+            newsletterViewModel = await this._newsletterService.CreateNewsletterAsync(newsletterViewModel);
+            return Ok(newsletterViewModel);
         }
         return BadRequest();
     }

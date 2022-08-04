@@ -5,11 +5,13 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using TAU.Website;
+using TAU.Website.Data;
 using TAU.Website.Models.Custom_Blocks;
 using TAU.Website.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("piranha");
 builder.AddPiranha(options =>
 {
     /**
@@ -28,7 +30,6 @@ builder.AddPiranha(options =>
     options.UseTinyMCE();
     options.UseMemoryCache();
 
-    var connectionString = builder.Configuration.GetConnectionString("piranha");
     options.UseEF<SQLiteDb>(db => db.UseSqlite(connectionString));
     options.UseIdentityWithSeed<IdentitySQLiteDb>(db => db.UseSqlite(connectionString));
 
@@ -52,6 +53,12 @@ builder.AddPiranha(options =>
 
 builder.Services.Configure<GoogleReCaptchaConfig>(builder.Configuration.GetSection("GoogleReCaptcha"));
 builder.Services.AddTransient(typeof(GoogleReCaptchaService));
+builder.Services.AddTransient<INewsletterService, NewsletterService>();
+
+builder.Services.AddDbContext<TauDbContext>(options => options.UseSqlite(connectionString));
+
+builder.Services.AddAutoMapper(typeof(Program)); 
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -64,10 +71,10 @@ app.UsePiranha(options =>
 {
     // Initialize Piranha
     App.Init(options.Api);
-    
+
     // Register custom components
-    App.Blocks.Register<Newsletter>();
-    App.Blocks.Register<WhitePaper>();
+    App.Blocks.Register<NewsletterViewModel>();
+    App.Blocks.Register<WhitePaperViewModel>();
 
     // Build content types
     new ContentTypeBuilder(options.Api)
