@@ -54,6 +54,7 @@ builder.AddPiranha(options =>
 builder.Services.Configure<GoogleReCaptchaConfig>(builder.Configuration.GetSection("GoogleReCaptcha"));
 builder.Services.AddTransient(typeof(GoogleReCaptchaService));
 builder.Services.AddTransient<INewsletterService, NewsletterService>();
+builder.Services.AddTransient<IWhitePaperService, WhitePaperService>();
 
 builder.Services.AddDbContext<TauDbContext>(options => options.UseSqlite(connectionString));
 

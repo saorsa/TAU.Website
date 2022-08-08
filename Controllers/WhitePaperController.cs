@@ -13,7 +13,8 @@ public class WhitePaperController : Controller
     private readonly GoogleReCaptchaService _googleReCaptchaService;
     private readonly IWhitePaperService _whitePaperService;
 
-    public WhitePaperController(IApi api, IModelLoader loader, GoogleReCaptchaService googleReCaptchaService, IWhitePaperService whitePaperService)
+    public WhitePaperController(IApi api, IModelLoader loader, GoogleReCaptchaService googleReCaptchaService,
+        IWhitePaperService whitePaperService)
     {
         _api = api;
         _loader = loader;
@@ -24,13 +25,16 @@ public class WhitePaperController : Controller
     [HttpPost]
     public async Task<IActionResult> PostWhitePaper(WhitePaperViewModel whitePaperViewModel)
     {
-        var googleReCaptchaResult = await this._googleReCaptchaService.Verify(whitePaperViewModel.Token);
-        if (googleReCaptchaResult)
+        if (ModelState.IsValid)
         {
-            whitePaperViewModel = await this._whitePaperService.CreateWhitePaperAsync(whitePaperViewModel);
-            return Ok(whitePaperViewModel);
+            var googleReCaptchaResult = await this._googleReCaptchaService.Verify(whitePaperViewModel.Token);
+            if (googleReCaptchaResult)
+            {
+                whitePaperViewModel = await this._whitePaperService.CreateWhitePaperAsync(whitePaperViewModel);
+                return Ok(whitePaperViewModel);
+            }
         }
-        
+
         return BadRequest();
     }
 }
