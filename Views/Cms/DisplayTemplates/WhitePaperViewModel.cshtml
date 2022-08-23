@@ -18,35 +18,40 @@
                 </button>
             </div>
             <div class="modal-body" id="whitePaperReturnStatus">
-                <form id="whitePaperForm" novalidate class="needs-validation">
+                <form id="whitePaperForm" class="needs-validation" novalidate>
                     <div class="form-group row">
                         <label asp-for="Name" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="whitePaperName" asp-for="Name" placeholder="Name" name="Name">
+                            <input type="text" class="form-control" id="whitePaperName" asp-for="Name" placeholder="Name" name="Name" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="Company" class="col-sm-2 col-form-label">Company</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="whitePaperCompany" asp-for="Company" placeholder="Company" name="Company">
+                            <input type="text" class="form-control" id="whitePaperCompany" asp-for="Company" placeholder="Company" name="Company" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="Email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="whitePaperEmail" asp-for="Email" placeholder="Email" name="Email">
+                            <input type="text" class="form-control" id="whitePaperEmail" asp-for="Email" placeholder="Email" name="Email" required pattern="^([a-zA-Z0-9_\-\.]+)@@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+                            <div class="invalid-feedback">Not a correct email address.</div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="Phone" class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="whitePaperPhone" asp-for="Phone" placeholder="Phone" name="Phone">
+                            <input type="text" class="form-control" id="whitePaperPhone" asp-for="Phone" placeholder="Phone" name="Phone" required pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
+                            <div class="invalid-feedback">Not a correct phone number.</div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="Position" class="col-sm-2 col-form-label">Position</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="whitePaperPosition" asp-for="Position" placeholder="Position" name="Position">
+                            <input type="text" class="form-control" id="whitePaperPosition" asp-for="Position" placeholder="Position" name="Position" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                     <div>
@@ -55,20 +60,33 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="submitWhitePaper()">Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">Close</button>
+                <button type="submit" class="btn btn-primary" onclick="submitWhitePaper()">Submit</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
+<script>   
     function displayWhitePaperForm(){
-        $('#whitePaperModal').modal('show')
+        var form = $("#whitePaperForm")[0]
+        var modal = $('#whitePaperModal').modal('show');
+        
+        modal.modal('show')
+        modal.on("hidden.bs.modal",function()
+        {
+            form.reset();
+            form.classList.remove('was-validated')
+        });
     }
     
     function submitWhitePaper() {
+        var form = $("#whitePaperForm")[0];
+        form.classList.add('was-validated')
+        if (!form.checkValidity()){
+            return;
+        }
         grecaptcha.ready(function() {
             grecaptcha.execute('@GoogleRecaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
                 $("#whitePaperReCaptchaToken").val(token);
@@ -80,12 +98,22 @@
                     data: data,
                     success: function (result) {
                         $('#whitePaperModal').modal('hide')
+                        form.reset();
+                        form.classList.remove('was-validated');
                     },
                     error: function () {
                         $('#whitePaperModal').modal('hide')
+                        form.reset();
+                        form.classList.remove('was-validated');
                     }
                 })
             });
         });
+    }
+    
+    function closeModal(){
+        var form = $("#whitePaperForm")[0];
+        form.reset();
+        form.classList.remove('was-validated')
     }
 </script>
