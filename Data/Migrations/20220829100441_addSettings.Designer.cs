@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TAU.Website.Data;
 
@@ -10,9 +11,10 @@ using TAU.Website.Data;
 namespace TAU.Website.Data.Migrations
 {
     [DbContext(typeof(TauDbContext))]
-    partial class TauDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220829100441_addSettings")]
+    partial class addSettings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");

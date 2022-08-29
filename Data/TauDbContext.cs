@@ -12,6 +12,9 @@ public class TauDbContext : DbContext
     public DbSet<Newsletter> Newsletters { get; set; }
 
     public DbSet<WhitePaper> WhitePapers { get; set; }
+    
+
+    public DbSet<Settings> Settings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

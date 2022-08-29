@@ -6,6 +6,7 @@ using Piranha.AspNetCore.Services;
 using TAU.Website.Models.Custom_Blocks;
 using TAU.Website.Services;
 
+[Route("WhitePaper")]
 public class WhitePaperController : Controller
 {
     private readonly IApi _api;
@@ -13,7 +14,9 @@ public class WhitePaperController : Controller
     private readonly GoogleReCaptchaService _googleReCaptchaService;
     private readonly IWhitePaperService _whitePaperService;
 
-    public WhitePaperController(IApi api, IModelLoader loader, GoogleReCaptchaService googleReCaptchaService,
+    public WhitePaperController(IApi api,
+        IModelLoader loader,
+        GoogleReCaptchaService googleReCaptchaService,
         IWhitePaperService whitePaperService)
     {
         _api = api;
@@ -22,7 +25,7 @@ public class WhitePaperController : Controller
         _whitePaperService = whitePaperService;
     }
 
-    [HttpPost]
+    [HttpPost("PostWhitePaper")]
     public async Task<IActionResult> PostWhitePaper(WhitePaperViewModel whitePaperViewModel)
     {
         if (ModelState.IsValid)
@@ -30,9 +33,22 @@ public class WhitePaperController : Controller
             var googleReCaptchaResult = await this._googleReCaptchaService.Verify(whitePaperViewModel.Token);
             if (googleReCaptchaResult)
             {
-                whitePaperViewModel = await this._whitePaperService.CreateWhitePaperAsync(whitePaperViewModel);
-                return Ok(whitePaperViewModel);
+                await this._whitePaperService.CreateWhitePaperAsync(whitePaperViewModel);
+                var whitePaperUrl = await this._whitePaperService.GetWhitePaperUrlAsync();
+                return Ok(whitePaperUrl);
             }
+        }
+
+        return BadRequest();
+    }
+
+    [HttpPost("SaveWhitePaperUrlAsync")]
+    public async Task<IActionResult> SaveWhitePaperUrlAsync(WhitePaperUrlModel whitePaper)
+    {
+        if (ModelState.IsValid)
+        {
+            await this._whitePaperService.SaveWhitePaperUrlAsync(whitePaper);
+            return Ok(whitePaper);
         }
 
         return BadRequest();

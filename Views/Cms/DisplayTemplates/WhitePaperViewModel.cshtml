@@ -2,7 +2,6 @@
 @using Microsoft.Extensions.Options
 @using TAU.Website
 @inject IOptions<GoogleReCaptchaConfig> GoogleRecaptchaConfig
-
 @{
     Layout = null;
 }
@@ -67,53 +66,4 @@
     </div>
 </div>
 
-
-<script>   
-    function displayWhitePaperForm(){
-        var form = $("#whitePaperForm")[0]
-        var modal = $('#whitePaperModal').modal('show');
-        
-        modal.modal('show')
-        modal.on("hidden.bs.modal",function()
-        {
-            form.reset();
-            form.classList.remove('was-validated')
-        });
-    }
-    
-    function submitWhitePaper() {
-        var form = $("#whitePaperForm")[0];
-        form.classList.add('was-validated')
-        if (!form.checkValidity()){
-            return;
-        }
-        grecaptcha.ready(function() {
-            grecaptcha.execute('@GoogleRecaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
-                $("#whitePaperReCaptchaToken").val(token);
-                var data = $("#whitePaperForm").serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: '/WhitePaper/PostWhitePaper',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: data,
-                    success: function (result) {
-                        $('#whitePaperModal').modal('hide')
-                        form.reset();
-                        form.classList.remove('was-validated');
-                    },
-                    error: function () {
-                        $('#whitePaperModal').modal('hide')
-                        form.reset();
-                        form.classList.remove('was-validated');
-                    }
-                })
-            });
-        });
-    }
-    
-    function closeModal(){
-        var form = $("#whitePaperForm")[0];
-        form.reset();
-        form.classList.remove('was-validated')
-    }
-</script>
+<script id="whitePaper" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/whitePaper.min.js" ></script>
