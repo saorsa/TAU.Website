@@ -1,3 +1,5 @@
+using TAU.Website.Models.Custom_Blocks;
+
 namespace TAU.Website.Data;
 
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +13,8 @@ public class TauDbContext : DbContext
 
     public DbSet<Newsletter> Newsletters { get; set; }
 
-    public DbSet<WhitePaper> WhitePapers { get; set; }
-    
+    public DbSet<WhitePaperDownload> WhitePaperDownloads { get; set; }
 
-    public DbSet<Settings> Settings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

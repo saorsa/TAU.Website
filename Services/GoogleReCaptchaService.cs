@@ -13,30 +13,25 @@ public class GoogleReCaptchaService
     {
         _googleReCaptchaConfig = googleReCaptchaConfig;
     }
+
     public async Task<bool> Verify(string token)
     {
-        try
-        {
-            var url = $"https://www.google.com/recaptcha/api/siteverify?secret={_googleReCaptchaConfig.CurrentValue.SecretKey}&response={token}";
+        var url =
+            $"https://www.google.com/recaptcha/api/siteverify?secret={_googleReCaptchaConfig.CurrentValue.SecretKey}&response={token}";
 
-            using (var client = new HttpClient())
+        using (var client = new HttpClient())
+        {
+            var httpResult = await client.GetAsync(url);
+            if (httpResult.StatusCode != HttpStatusCode.OK)
             {
-                var httpResult = await client.GetAsync(url);
-                if (httpResult.StatusCode != HttpStatusCode.OK)
-                {
-                    return false;
-                }
-
-                var responseString = await httpResult.Content.ReadAsStringAsync();
-
-                var googleResult = JsonConvert.DeserializeObject<GoogleReCaptchaResponseModel>(responseString);
-
-                return googleResult.Success && googleResult.Score >= 0.5;
+                return false;
             }
-        }
-        catch (Exception e)
-        {
-            return false;
+
+            var responseString = await httpResult.Content.ReadAsStringAsync();
+
+            var googleResult = JsonConvert.DeserializeObject<GoogleReCaptchaResponseModel>(responseString);
+
+            return googleResult.Success && googleResult.Score >= 0.5;
         }
     }
 }

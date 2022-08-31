@@ -1,3 +1,5 @@
+using TAU.Website.Models;
+
 namespace TAU.Website;
 
 using AutoMapper;
@@ -8,7 +10,7 @@ public class TauAutomapperProfile : Profile
 {
     public TauAutomapperProfile()
     {
-        this.CreateMap<Newsletter, NewsletterViewModel>().ReverseMap();
-        this.CreateMap<WhitePaper, WhitePaperViewModel>().ReverseMap();
+        this.CreateMap<Newsletter, NewsPaperBlock>().ReverseMap();
+        this.CreateMap<WhitePaperDownload, WhitePaperBlock>().ReverseMap();
     }
 }

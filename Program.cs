@@ -6,6 +6,7 @@ using Piranha.Data.EF.SQLite;
 using Piranha.Manager.Editor;
 using TAU.Website;
 using TAU.Website.Data;
+using TAU.Website.Models;
 using TAU.Website.Models.Custom_Blocks;
 using TAU.Website.Services;
 
@@ -74,8 +75,8 @@ app.UsePiranha(options =>
     App.Init(options.Api);
 
     // Register custom components
-    App.Blocks.Register<NewsletterViewModel>();
-    App.Blocks.Register<WhitePaperViewModel>(); 
+    App.Blocks.Register<NewsPaperBlock>();
+    App.Blocks.Register<WhitePaperBlock>(); 
     App.Modules.Manager().Scripts.Add("~/whitePaper-block.js");
 
     // Build content types

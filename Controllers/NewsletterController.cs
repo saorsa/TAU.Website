@@ -1,3 +1,5 @@
+using TAU.Website.Models;
+
 namespace TAU.Website.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
@@ -23,15 +25,15 @@ public class NewsletterController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostNewsletter(NewsletterViewModel newsletterViewModel)
+    public async Task<IActionResult> PostNewsletter(NewsPaperBlock newsPaperBlock)
     {
         if (ModelState.IsValid)
         {
-            var googleReCaptchaResult = await this._googleReCaptchaService.Verify(newsletterViewModel.Token);
+            var googleReCaptchaResult = await this._googleReCaptchaService.Verify(newsPaperBlock.Token);
             if (googleReCaptchaResult)
             {
-                newsletterViewModel = await this._newsletterService.CreateNewsletterAsync(newsletterViewModel);
-                return Ok(newsletterViewModel);
+                newsPaperBlock = await this._newsletterService.CreateNewsletterAsync(newsPaperBlock);
+                return Ok(newsPaperBlock);
             }
         }
 

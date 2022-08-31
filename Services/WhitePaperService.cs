@@ -1,56 +1,38 @@
+using Piranha;
+
 namespace TAU.Website.Services;
 
 using AutoMapper;
-using TAU.Website.Data;
-using TAU.Website.Data.Entities;
-using TAU.Website.Models.Custom_Blocks;
-using Microsoft.EntityFrameworkCore;
+using Data;
+using Data.Entities;
+using Models.Custom_Blocks;
 
 public class WhitePaperService : IWhitePaperService
 {
     private readonly TauDbContext _dbContext;
     private readonly IMapper _mapper;
-
-    public WhitePaperService(TauDbContext dbContext, IMapper mapper)
+    private readonly IApi _api;
+    public WhitePaperService(TauDbContext dbContext, IMapper mapper, IApi api)
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _api = api;
     }
 
-    public async Task<WhitePaperViewModel> CreateWhitePaperAsync(WhitePaperViewModel whitePaper)
+    public async Task<WhitePaperBlock> CreateWhitePaperDownloadAsync(WhitePaperBlock whitePaper)
     {
-        var newWhitePaper = this._mapper.Map<WhitePaperViewModel, WhitePaper>(whitePaper);
+        var newWhitePaper = this._mapper.Map<WhitePaperBlock, WhitePaperDownload>(whitePaper);
 
-        await this._dbContext.WhitePapers.AddAsync(newWhitePaper);
+        await this._dbContext.WhitePaperDownloads.AddAsync(newWhitePaper);
         await this._dbContext.SaveChangesAsync();
 
-        return this._mapper.Map<WhitePaper, WhitePaperViewModel>(newWhitePaper);
+        return this._mapper.Map<WhitePaperDownload, WhitePaperBlock>(newWhitePaper);
     }
 
-    public async Task SaveWhitePaperUrlAsync(WhitePaperUrlModel whitePaper)
+
+    public async Task<string> GetWhitePaperUrlAsync(Guid pageId, Guid blockId)
     {
-        var settings = await this._dbContext.Settings.FirstOrDefaultAsync();
-
-        if (settings == null)
-        {
-            await this._dbContext.Settings.AddAsync(new Settings()
-            {
-                WhitePaperUrl = whitePaper.Url
-            });
-        }
-        else
-        {
-            settings.WhitePaperUrl = whitePaper.Url;
-            this._dbContext.Settings.Update(settings);
-        }
-
-        await this._dbContext.SaveChangesAsync();
-    }
-
-    public async Task<string> GetWhitePaperUrlAsync()
-    {
-        var whitePaperUrl = await this._dbContext.Settings.FirstOrDefaultAsync();
-
-        return whitePaperUrl == null ? string.Empty : whitePaperUrl.WhitePaperUrl;
+        var page = await _api.Pages.GetByIdAsync(pageId);
+        return ((WhitePaperBlock)page.Blocks.First(b=>b.Id==blockId)).ContentUrl;
     }
 }

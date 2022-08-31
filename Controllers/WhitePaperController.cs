@@ -1,3 +1,5 @@
+using TAU.Website.Models;
+
 namespace TAU.Website.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +8,7 @@ using Piranha.AspNetCore.Services;
 using TAU.Website.Models.Custom_Blocks;
 using TAU.Website.Services;
 
-[Route("WhitePaper")]
+[Route("api/[controller]")]
 public class WhitePaperController : Controller
 {
     private readonly IApi _api;
@@ -26,29 +28,17 @@ public class WhitePaperController : Controller
     }
 
     [HttpPost("PostWhitePaper")]
-    public async Task<IActionResult> PostWhitePaper(WhitePaperViewModel whitePaperViewModel)
+    public async Task<IActionResult> PostWhitePaper(WhitePaperBlock whitePaperBlock, Guid pageId)
     {
         if (ModelState.IsValid)
         {
-            var googleReCaptchaResult = await this._googleReCaptchaService.Verify(whitePaperViewModel.Token);
+            var googleReCaptchaResult = await this._googleReCaptchaService.Verify(whitePaperBlock.Token);
             if (googleReCaptchaResult)
             {
-                await this._whitePaperService.CreateWhitePaperAsync(whitePaperViewModel);
-                var whitePaperUrl = await this._whitePaperService.GetWhitePaperUrlAsync();
+                await this._whitePaperService.CreateWhitePaperDownloadAsync(whitePaperBlock);
+                var whitePaperUrl = await this._whitePaperService.GetWhitePaperUrlAsync(pageId, whitePaperBlock.Id);
                 return Ok(whitePaperUrl);
             }
-        }
-
-        return BadRequest();
-    }
-
-    [HttpPost("SaveWhitePaperUrlAsync")]
-    public async Task<IActionResult> SaveWhitePaperUrlAsync(WhitePaperUrlModel whitePaper)
-    {
-        if (ModelState.IsValid)
-        {
-            await this._whitePaperService.SaveWhitePaperUrlAsync(whitePaper);
-            return Ok(whitePaper);
         }
 
         return BadRequest();

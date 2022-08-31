@@ -2,7 +2,7 @@ namespace TAU.Website.Data.Entities;
 
 using System.ComponentModel.DataAnnotations;
 
-public class WhitePaper
+public class WhitePaperDownload
 {
     [Key] public Guid Id { get; set; }
 
@@ -11,6 +11,8 @@ public class WhitePaper
     public string Name { get; set; }
 
     public string Position { get; set; }
+
+    public string ContentUrl { get; set; }
 
     public string Email { get; set; }
 
