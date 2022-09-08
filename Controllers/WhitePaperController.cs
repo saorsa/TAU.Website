@@ -43,7 +43,7 @@ public class WhitePaperController : Controller
     }
 
     [HttpPost("SaveWhitePaperUrlAsync")]
-    public async Task<IActionResult> SaveWhitePaperUrlAsync(WhitePaperUrlModel whitePaper)
+    public async Task<IActionResult> SaveWhitePaperUrlAsync([FromBody]WhitePaperUrlModel whitePaper)
     {
         if (ModelState.IsValid)
         {
@@ -52,5 +52,12 @@ public class WhitePaperController : Controller
         }
 
         return BadRequest();
+    }
+
+    [HttpGet("GetWhitePaperUrlAsync")]
+    public async Task<IActionResult> GetWhitePaperUrlAsync()
+    {
+        var whitePaperUrl = await this._whitePaperService.GetWhitePaperUrlAsync();
+        return Ok(Json(whitePaperUrl));
     }
 }
