@@ -76,7 +76,7 @@ app.UsePiranha(options =>
     // Register custom components
     App.Blocks.Register<NewsletterViewModel>();
     App.Blocks.Register<WhitePaperViewModel>(); 
-    App.Modules.Manager().Scripts.Add("~/Assets/VueComponents/whitePaper-block.js");
+    App.Modules.Manager().Scripts.Add("~/whitePaper-block.js");
 
     // Build content types
     new ContentTypeBuilder(options.Api)
