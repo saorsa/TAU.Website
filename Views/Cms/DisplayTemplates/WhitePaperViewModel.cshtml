@@ -66,4 +66,10 @@
     </div>
 </div>
 
-<script id="whitePaper" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/whitePaper.min.js" ></script>
+
+<environment names="Development">
+    <script id="whitePaper" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/whitePaper.js"></script>
+</environment>
+<environment names="Production">
+    <script id="whitePaper" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/whitePaper.min.js"></script>
+</environment>

@@ -39,3 +39,10 @@
 </div>
 
 <script id="newsletter" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/newsletter.min.js" ></script>
+
+<environment names="Development">
+    <script id="newsletter" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/newsletter.js" ></script>
+</environment>
+<environment names="Production">
+    <script id="newsletter" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/newsletter.min.js"></script>
+</environment>
