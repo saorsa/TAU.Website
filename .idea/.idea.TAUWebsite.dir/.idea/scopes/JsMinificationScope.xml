@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="JsMinificationScope" pattern="file[rider.module]:wwwroot/Assets/*.js&amp;&amp;!file:wwwroot/Assets/*.min.js" />
+</component>

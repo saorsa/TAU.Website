@@ -1,0 +1,48 @@
+@using TAU.Website
+@using Microsoft.Extensions.Options
+@model NewsPaperBlock
+@inject IOptions<GoogleReCaptchaConfig> GoogleRecaptchaConfig
+@{
+    Layout = null;
+}
+<form id="newsletterForm" novalidate class="needs-validation">
+    <div class="form-group row-cols-lg-3">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="newsletterEmail" asp-for="Email" name="Email" placeholder="Email" required pattern="^([a-zA-Z0-9_\-\.]+)@@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+            <div class="invalid-feedback">Not a correct email address.</div>
+        </div>
+    </div>
+    <div>
+        <input type="hidden" id="newsLetterReCaptchaToken" asp-for="Token" name="Token"/>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-info" onclick="submitNewsletter()">Subscribe</button>
+    </div>
+</form>
+
+<div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsletterModalLabel">Newsletter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="newsletterReturnStatus">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="newsletter" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/newsletter.min.js" ></script>
+
+<environment names="Development">
+    <script id="newsletter" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/newsletter.js" ></script>
+</environment>
+<environment names="Production">
+    <script id="newsletter" data-siteKey="@GoogleRecaptchaConfig.Value.SiteKey" src="Assets/newsletter.min.js"></script>
+</environment>
