@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Assets\EternaTemplate\css" />
     <Folder Include="wwwroot\css" />
   </ItemGroup>
 </Project>
