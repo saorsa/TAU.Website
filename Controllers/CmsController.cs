@@ -3,6 +3,7 @@ using Piranha;
 using Piranha.AspNetCore.Services;
 using Piranha.Models;
 using TAU.Website.Models;
+using TAU.Website.Models.Pages;
 
 namespace TAU.Website.Controllers
 {
@@ -68,7 +69,26 @@ namespace TAU.Website.Controllers
                 return Unauthorized();
             }
         }
+        /// <summary>
+        /// Gets the home page with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("/homepage")]
+        public async Task<IActionResult> HomePage(Guid id, bool draft = false)
+        {
+            try
+            {
+                var model = await _loader.GetPageAsync<HomePage>(id, HttpContext.User, draft);
 
+                return View(model);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized();
+            }
+        }
+        
         /// <summary>
         /// Gets the post with the given id.
         /// </summary>

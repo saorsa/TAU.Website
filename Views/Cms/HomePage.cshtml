@@ -1,0 +1,89 @@
+@model TAU.Website.Models.Pages.HomePage
+
+@section script{
+    <script src="~/Assets/carousel.js" type="text/javascript"></script>
+}
+
+@* Carousel *@
+@if (Model.Carousel.Count > 0)
+{
+    <div class="row pt-5 pb-5">
+        <div class="col-sm-12 col-md-12">
+            <div id="corouselStart" class="carousel slide gallery-block" data-ride="carousel">
+                <ol class="carousel-indicators justify-content-md-start justify-content-center">
+                    @{
+                        var indicatorIndex = 0;
+                    }
+                    @foreach (var hero in Model.Carousel)
+                    {
+                        @if (indicatorIndex == 0)
+                        {
+                            <li data-target="#corouselStart" data-slide-to="@indicatorIndex" class="active"></li>
+                        }
+                        else
+                        {
+                            <li data-target="#corouselStart" data-slide-to="@indicatorIndex"></li>
+                        }
+
+                        indicatorIndex += 1;
+                    }
+                    @{
+                        var imageIndex = 0;
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @foreach (var hero in Model.Carousel)
+                    {
+                        @if (imageIndex == 0)
+                        {
+                            <div class="carousel-item active">
+                                <div class="row text-md-left text-center">
+                                    <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2 pt-3">
+                                        <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@hero.Title</h1>
+                                        <h3 class="heading3 d-sm-block d-md-none">@hero.Title</h3>
+                                        <p class="body2 mt-3 pt-2">@Html.Raw(hero.Contents)</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 order-md-2 order-1 body2">
+                                        <img class="img-fluid" src="~/images/slide1.svg" width="496" alt="First slide">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (imageIndex == 1)
+                        {
+                            <div class="carousel-item">
+                                <div class="row text-md-left text-center">
+                                    <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2 pt-2">
+                                        <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@hero.Title</h1>
+                                        <h3 class="heading3 d-sm-block d-md-none">@hero.Title</h3>
+                                        <p class="body2 mt-3 pt-2">@Html.Raw(hero.Contents)</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 order-md-2 order-1">
+                                        <img class="img-fluid" src="~/images/slide2.svg" width="496" alt="First slide">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (imageIndex == 2)
+                        {
+                            <div class="carousel-item">
+                                <div class="row text-md-left text-center">
+                                    <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2 pt-3">
+                                        <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@hero.Title</h1>
+                                        <h3 class="heading3 d-sm-block d-md-none">@hero.Title</h3>
+                                        <p class="body2 mt-3 pt-2">@Html.Raw(hero.Contents)</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 order-md-2 order-1">
+                                        <img class="img-fluid" src="~/images/slide3.svg" width="496" alt="First slide">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        imageIndex += 1;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
