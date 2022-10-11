@@ -9,5 +9,5 @@ public class NewsRegion
 
     [Field(Title = "Title")] public TextField Title { get; set; }
 
-    [Field(Title = "Content")] public TextField Contents { get; set; }
+    [Field(Title = "Link")] public StringField ReadMoreLink { get; set; }
 }
