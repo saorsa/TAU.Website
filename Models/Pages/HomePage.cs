@@ -1,5 +1,3 @@
-using Piranha.Extend.Fields;
-
 namespace TAU.Website.Models.Pages;
 
 using Piranha.AttributeBuilder;
@@ -17,5 +15,6 @@ public class HomePage : Page<StandardPage>
     [Region(Title = "Products")] public IList<ProductsRegion> Products { get; set; }
 
     [Region(Title = "Free Text")] public TextContentRegion HomePageText { get; set; }
+    
     
 }

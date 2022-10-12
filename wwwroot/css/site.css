@@ -1,6 +1,5 @@
 @charset "UTF-8";
 body {
-  padding-top: 3.5rem;
 }
 
 main {
@@ -208,31 +207,31 @@ header.has-image .dimmer {
 
 /* Carousel */
 
-.start-carousel-capture {
-  text-align: start;
-  color: black;
-}
+/*.start-carousel-capture {*/
+/*  text-align: start;*/
+/*  color: black;*/
+/*}*/
 
-.carousel-indicators {
-  margin: 0;
-  padding: 0;
-  align-content: start;
-  text-align: start;
-  bottom: -10px;
-}
+/*.carousel-indicators {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  align-content: start;*/
+/*  text-align: start;*/
+/*  bottom: -10px;*/
+/*}*/
 
-.carousel-indicators li {
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-}
+/*.carousel-indicators li {*/
+/*  width: 8px;*/
+/*  height: 8px;*/
+/*  border-radius: 100%;*/
+/*}*/
 
-.carousel-indicators li {
-  display: block;
-  border: 1px solid black;
-  background-color: white;
-}
+/*.carousel-indicators li {*/
+/*  display: block;*/
+/*  border: 1px solid black;*/
+/*  background-color: white;*/
+/*}*/
 
-.carousel-indicators .active {
-  background-color: black;
-}
+/*.carousel-indicators .active {*/
+/*  background-color: black;*/
+/*}*/

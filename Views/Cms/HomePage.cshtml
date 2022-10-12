@@ -1,149 +1,91 @@
 @model TAU.Website.Models.Pages.HomePage
 
-@section script{
-    <script src="~/Assets/carousel.js" type="text/javascript"></script>
-}
-
-<div class="main main-blurmt-md-5 pt-md-4 mt-5 pt-4" id="home-main">
-    <div class="container mt-md-4 pt-md-4 pl-md-3 pr-md-3 pl-4 pr-4">
-
-        @* Carousel *@
-        @if (Model.Carousel.Count > 0)
-        {
-            <div class="row pt-5 pb-5">
-                <div class="col-sm-12 col-md-12">
-                    <div id="corouselStart" class="carousel slide gallery-block" data-ride="carousel">
-                        <ol class="carousel-indicators justify-content-md-start justify-content-center">
-                            @{
-                                var indicatorIndex = 0;
-                            }
-                            @foreach (var news in Model.Carousel)
-                            {
-                                @if (indicatorIndex == 0)
-                                {
-                                    <li data-target="#corouselStart" data-slide-to="@indicatorIndex" class="active"></li>
-                                }
-                                else
-                                {
-                                    <li data-target="#corouselStart" data-slide-to="@indicatorIndex"></li>
-                                }
-
-                                indicatorIndex += 1;
-                            }
-                            @{
-                                var imageIndex = 0;
-                            }
-                        </ol>
-                        <div class="carousel-inner">
-                            @foreach (var news in Model.Carousel)
-                            {
-                                @if (imageIndex == 0)
-                                {
-                                    <div class="carousel-item active">
-                                        <div class="row text-md-left justify-content-center">
-                                            <div class="col-md-10 col-sm-10 vertical-center order-md-1 order-2 pt-3 ">
-                                                <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@news.Title</h1>
-                                                <div>
-                                                    <img class="img-fluid justify-content-center" src=@Url.Content(news.PrimaryImage.Media.PublicUrl) width="496" alt="First slide">
-                                                </div>
-                                                <div clas="justify-content-center">
-                                                    @if (news.ReadMoreLink.Value.Length > 0)
-                                                    {
-                                                        <a class="btn btn-primary" href=@Url.Content(news.ReadMoreLink.Value) role="button">Read more</a>
-                                                    }
-                                                </div>
-                                            </div>
-
-                                        </div>
+<section id="hero">
+    <div class="hero-container">
+        <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+            <div class="carousel-inner" role="listbox">
+                @if (Model.Carousel.Count > 0)
+                {
+                    <div class="carousel-inner">
+                        @foreach (var news in Model.Carousel)
+                        {
+                            <div class="carousel-item @(@Model.Carousel.IndexOf(news) == 0 ? "active" : "")" style="background-image: url(@Url.Content(news.BackgroundImage.Media.PublicUrl))">
+                                <div class="carousel-container">
+                                    <div class="carousel-content">
+                                        <h2 class="animate__animated animate__fadeInDown">@news.Title</h2>
+                                        <p class="animate__animated animate__fadeInUp">@news.Content</p>
+                                        @if (news.ReadMoreLink.Value != null)
+                                        {
+                                            <a href=@Url.Content(news.ReadMoreLink.Value) class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+                                        }
                                     </div>
-                                }
-                                else if (imageIndex == 1)
-                                {
-                                    <div class="carousel-item">
-                                        <div class="row text-md-left text-center">
-                                            <div class="col-md-10 col-sm-10 vertical-center order-md-1 order-2 pt-2">
-
-                                                <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@news.Title</h1>
-                                                <div>
-                                                    <img class="img-fluid justify-content-center" src=@Url.Content(news.PrimaryImage.Media.PublicUrl) width="496" alt="First slide">
-                                                </div>
-                                                <div clas="justify-content-center">
-                                                    @if (news.ReadMoreLink.Value.Length > 0)
-                                                    {
-                                                        <a class="btn btn-primary" href=@Url.Content(news.ReadMoreLink.Value) role="button">Read more</a>
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                else if (imageIndex == 2)
-                                {
-                                    <div class="carousel-item">
-                                        <div class="row text-md-left text-center">
-                                            <div class="col-md-10 col-sm-10 vertical-center order-md-1 order-2 pt-3">
-                                                <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@news.Title</h1>
-                                                <div>
-                                                    <img class="img-fluid justify-content-center" src=@Url.Content(news.PrimaryImage.Media.PublicUrl) width="496" alt="First slide">
-                                                </div>
-                                                <div clas="justify-content-center">
-                                                    @if (news.ReadMoreLink.Value.Length > 0)
-                                                    {
-                                                        <a class="btn btn-primary" href=@Url.Content(news.ReadMoreLink.Value) role="button">Read more</a>
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-
-                                imageIndex += 1;
-                            }
-                        </div>
+                                </div>
+                            </div>
+                        }
                     </div>
-                </div>
-            </div>
-        }
+                }
 
-        <section id="products" class="services">
-            <div class="container">
-                <div class="row">
-                    @foreach (var product in @Model.Products)
+            </div>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services">
+    <div class="mt-5 pt-4">
+        <div class="container mt-md-4 pt-md-4 ">
+            <div class="row">
+                @{
+                    foreach (var product in @Model.Products)
                     {
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        var cardClass = "";
+                        switch (Model.Products.IndexOf(product))
+                        {
+                            case 0:
+                                cardClass = "";
+                                break;
+                            case 1:
+                                cardClass = "mt-4 mt-md-0";
+                                break;
+                            case 2:
+                                cardClass = "mt-4 mt-lg-0";
+                                break;
+                            default:
+                                cardClass = "mt-4";
+                                break;
+                        }
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch @cardClass">
                             <div class="icon-box">
                                 <div class="icon">
                                     <i class="bx bxl-dribbble"></i>
                                 </div>
                                 <h4>
-                                    <a href="">@product.Title</a>
+                                    <a href=@Url.Content(product.Url)>@product.Title</a>
                                 </h4>
-                                <p>@product.Text</p>
+                                <p>@Html.Raw(product.Text)</p>
                             </div>
                         </div>
                     }
-
-
-                </div>
-
-            </div>
-        </section><!-- End Services Section -->
-
-
-        <div class="main main-blurmt-md-5 pt-md-4 mt-5 pt-4">
-            <div class="container mt-md-5 pt-md-5 pb-4 pl-4 pr-4 text-md-left text-center">
-                <div class="row justify-content-md-start justify-content-center pb-5 pt-5 vertical-center">
-                    <div class="col-md-6 col-sm-12 body2">
-                        <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.HomePageText.Title</h2>
-                        <h3 class="heading3 d-sm-block d-md-none">@Model.HomePageText.Title</h3>
-                        @Html.Raw(Model.HomePageText.Body)
-                    </div>
-                </div>
-                <div class="separator"></div>
-
+                }
             </div>
         </div>
-
-
     </div>
-</div>
+</section>
+
+<section id="freetext" class="clients">
+    <div class="container">
+        <div class="section-title">
+            <h2>@Model.HomePageText.Title</h2>
+            <p>@Html.Raw(Model.HomePageText.Body)</p>
+        </div>
+    </div>
+</section>
