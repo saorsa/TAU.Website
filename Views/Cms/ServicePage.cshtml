@@ -1,0 +1,41 @@
+@model TAU.Website.Models.Pages.ServicePage
+
+
+<!-- ======= Blog Section ======= -->
+<section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-8 entries">
+                @foreach (var service in Model.Services)
+                {
+                    <article class="entry">
+                        @if (service.Image.Id != null)
+                        {
+                            <div class="entry-img">
+                                <img src=@Url.Content(service.Image.Media.PublicUrl) alt="" class="img-fluid">
+                            </div>
+                        }
+
+                        <h2 class="entry-title">
+                            <a href=@Url.Content(service.Url)>@Html.Raw(service.Header)</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p> @Html.Raw(service.Text) </p>
+                            @if (service.Url.Value != null)
+                            {
+                                <div class="read-more">
+                                    <a href=@Url.Content(service.Url.Value)>Read More</a>
+                                </div>
+                            }
+                        </div>
+
+                    </article>
+                    <!-- End blog entry -->
+                }
+
+            </div><!-- End blog entries list -->
+
+        </div>
+
+    </div>
+</section><!-- End Blog Section -->

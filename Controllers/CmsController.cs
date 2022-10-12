@@ -69,6 +69,7 @@ namespace TAU.Website.Controllers
                 return Unauthorized();
             }
         }
+        
         /// <summary>
         /// Gets the home page with the given id.
         /// </summary>
@@ -80,6 +81,26 @@ namespace TAU.Website.Controllers
             try
             {
                 var model = await _loader.GetPageAsync<HomePage>(id, HttpContext.User, draft);
+
+                return View(model);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the service page with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("/servicepage")]
+        public async Task<IActionResult> ServicePage(Guid id, bool draft = false)
+        {
+            try
+            {
+                var model = await _loader.GetPageAsync<ServicePage>(id, HttpContext.User, draft);
 
                 return View(model);
             }

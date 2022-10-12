@@ -35,4 +35,24 @@
     <Folder Include="wwwroot\Assets\EternaTemplate\css" />
     <Folder Include="wwwroot\css" />
   </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-1.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-2.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-3.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-4.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-5.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-6.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-7.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\clients\client-8.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\slide\slide-1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\slide\slide-2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\slide\slide-3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-6.jpg" />
+  </ItemGroup>
 </Project>
