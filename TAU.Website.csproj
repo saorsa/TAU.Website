@@ -54,5 +54,17 @@
     <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-4.jpg" />
     <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-5.jpg" />
     <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\testimonials\testimonials-6.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-6.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-7.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-8.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\portfolio\portfolio-9.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\team\team-1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\team\team-2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Assets\EternaTemplate\img\team\team-3.jpg" />
   </ItemGroup>
 </Project>

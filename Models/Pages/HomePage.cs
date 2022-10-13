@@ -12,7 +12,7 @@ public class HomePage : Page<StandardPage>
 {
     [Region(ListTitle = "Carousel")] public IList<NewsRegion> Carousel { get; set; }
 
-    [Region(Title = "Products")] public IList<ProductsRegion> Products { get; set; }
+    [Region(Title = "Products")] public IList<ProductsHomeRegion> Products { get; set; }
 
     [Region(Title = "Free Text")] public TextContentRegion HomePageText { get; set; }
     

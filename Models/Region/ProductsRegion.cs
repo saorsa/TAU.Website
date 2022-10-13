@@ -1,15 +1,15 @@
-namespace TAU.Website.Models.Region;
-
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 
+namespace TAU.Website.Models.Region;
+
 public class ProductsRegion
 {
-    [Field(Title = "Title")] public TextField Title { get; set; }
+    [Field(Title = "Heading")] public StringField Heading { get; set; }
+    
+    [Field(Title = "Thumbnail text")] public HtmlField ThumbnailText { get; set; }
 
-    [Field(Title = "Text")] public HtmlField Text { get; set; }
+    [Field(Title = "Full text")] public HtmlField FullText { get; set; }
 
-    [Field(Title = "Icon")] public StringField Icon { get; set; }
-
-    [Field(Title = "URL")] public StringField Url { get; set; }
+    [Field(Title = "Image")] public ImageField Image { get; set; }
 }

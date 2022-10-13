@@ -151,6 +151,26 @@ namespace TAU.Website.Controllers
         }
         
         /// <summary>
+        /// Gets the products page with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("/productspage")]
+        public async Task<IActionResult> ProductsPage(Guid id, bool draft = false)
+        {
+            try
+            {
+                var model = await _loader.GetPageAsync<ProductsPage>(id, HttpContext.User, draft);
+
+                return View(model);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized();
+            }
+        }
+        
+        /// <summary>
         /// Gets the post with the given id.
         /// </summary>
         /// <param name="id">The unique post id</param>
