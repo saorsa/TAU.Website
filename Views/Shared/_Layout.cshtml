@@ -103,6 +103,22 @@
     </div>
 </header>
 
+@if (@WebApp.CurrentPage.TypeId != "HomePage")
+{
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>@Html.Raw(WebApp.CurrentPage.Title)</li>
+            </ol>
+            <h2>@Html.Raw(WebApp.CurrentPage.Title)</h2>
+
+        </div>
+    </section>
+}
+
 @RenderBody()
 
 <footer id="footer">
