@@ -10,7 +10,7 @@
                         <img src=@Url.Content(product.Image.Media.PublicUrl) class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <div class="portfolio-links">
-                                <a href=@Url.Content(product.Image.Media.PublicUrl) data-gallery="portfolioGallery" class="portfolio-lightbox" title=@Html.Raw(product.Heading)>
+                                <a href=@Url.Content(product.Image.Media.PublicUrl) data-gallery="portfolioGallery" class="portfolio-lightbox" title="@product.FullText.Value">
                                     <h4>@Html.Raw(product.Heading)</h4>
                                     <p>@Html.Raw(product.ThumbnailText)</p>
                                 </a>
