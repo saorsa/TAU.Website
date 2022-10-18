@@ -5,7 +5,7 @@ using Piranha.Extend;
 using TAU.Website.Models.Region;
 
 [PageType(Title = "Managed Services page")]
-[ContentTypeRoute(Title = "ManagedServicesPage", Route = "/managedservicespage")]
+[ContentTypeRoute(Title = "ManagedServicesPage", Route = "/managedservices")]
 public class ManagedServicesPage : Page<StandardPage>
 {
     

@@ -69,107 +69,72 @@ namespace TAU.Website.Controllers
                 return Unauthorized();
             }
         }
-        
+
         /// <summary>
         /// Gets the home page with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("/homepage")]
+        [Route("/home")]
         public async Task<IActionResult> HomePage(Guid id, bool draft = false)
         {
-            try
-            {
-                var model = await _loader.GetPageAsync<HomePage>(id, HttpContext.User, draft);
+            var model = await _loader.GetPageAsync<HomePage>(id, HttpContext.User, draft);
 
-                return View(model);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+            return View(model);
         }
-        
+
         /// <summary>
         /// Gets the service page with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("/servicepage")]
+        [Route("/service")]
         public async Task<IActionResult> ServicePage(Guid id, bool draft = false)
         {
-            try
-            {
-                var model = await _loader.GetPageAsync<ServicePage>(id, HttpContext.User, draft);
+            var model = await _loader.GetPageAsync<ServicePage>(id, HttpContext.User, draft);
 
-                return View(model);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+            return View(model);
         }
-        
+
         /// <summary>
         /// Gets the managed service page with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("/managedservicespage")]
+        [Route("/managedservices")]
         public async Task<IActionResult> ManagedServicesPage(Guid id, bool draft = false)
         {
-            try
-            {
-                var model = await _loader.GetPageAsync<ManagedServicesPage>(id, HttpContext.User, draft);
+            var model = await _loader.GetPageAsync<ManagedServicesPage>(id, HttpContext.User, draft);
 
-                return View(model);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+            return View(model);
         }
-        
+
         /// <summary>
         /// Gets the contacts page with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("/contactpage")]
+        [Route("/contact")]
         public async Task<IActionResult> ContactPage(Guid id, bool draft = false)
         {
-            try
-            {
-                var model = await _loader.GetPageAsync<ContactPage>(id, HttpContext.User, draft);
+            var model = await _loader.GetPageAsync<ContactPage>(id, HttpContext.User, draft);
 
-                return View(model);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+            return View(model);
         }
-        
+
         /// <summary>
         /// Gets the products page with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("/productspage")]
+        [Route("/products")]
         public async Task<IActionResult> ProductsPage(Guid id, bool draft = false)
         {
-            try
-            {
-                var model = await _loader.GetPageAsync<ProductsPage>(id, HttpContext.User, draft);
+            var model = await _loader.GetPageAsync<ProductsPage>(id, HttpContext.User, draft);
 
-                return View(model);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+            return View(model);
         }
-        
+
         /// <summary>
         /// Gets the post with the given id.
         /// </summary>
@@ -186,6 +151,7 @@ namespace TAU.Website.Controllers
                 {
                     model.Comments = await _api.Posts.GetAllCommentsAsync(model.Id, true);
                 }
+
                 return View(model);
             }
             catch
@@ -213,7 +179,9 @@ namespace TAU.Website.Controllers
                     var comment = new PostComment
                     {
                         IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
-                        UserAgent = Request.Headers.ContainsKey("User-Agent") ? Request.Headers["User-Agent"].ToString() : "",
+                        UserAgent = Request.Headers.ContainsKey("User-Agent")
+                            ? Request.Headers["User-Agent"].ToString()
+                            : "",
                         Author = commentModel.CommentAuthor,
                         Email = commentModel.CommentEmail,
                         Url = commentModel.CommentUrl,

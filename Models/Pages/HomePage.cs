@@ -7,7 +7,7 @@ using Piranha.Models;
 using TAU.Website.Models.Region;
 
 [PageType(Title = "Home page")]
-[ContentTypeRoute(Title = "HomePage", Route = "/homepage")]
+[ContentTypeRoute(Title = "HomePage", Route = "/home")]
 public class HomePage : Page<StandardPage>
 {
     [Region(ListTitle = "Carousel")] public IList<NewsRegion> Carousel { get; set; }

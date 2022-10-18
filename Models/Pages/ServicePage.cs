@@ -6,7 +6,7 @@ using Piranha.Extend;
 using TAU.Website.Models.Region;
 
 [PageType(Title = "Service page")]
-[ContentTypeRoute(Title = "ServicePage", Route = "/servicepage")]
+[ContentTypeRoute(Title = "ServicePage", Route = "/service")]
 public class ServicePage : Page<StandardPage>
 {
     [Region(ListTitle = "Services")] public IList<ServiceRegion> Services { get; set; }
