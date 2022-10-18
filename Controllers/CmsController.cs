@@ -88,7 +88,7 @@ namespace TAU.Website.Controllers
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("/service")]
+        [Route("/services")]
         public async Task<IActionResult> ServicePage(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<ServicePage>(id, HttpContext.User, draft);
@@ -114,7 +114,7 @@ namespace TAU.Website.Controllers
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("/contact")]
+        [Route("/contacts")]
         public async Task<IActionResult> ContactPage(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<ContactPage>(id, HttpContext.User, draft);
