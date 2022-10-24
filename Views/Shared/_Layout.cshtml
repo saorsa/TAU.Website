@@ -6,50 +6,185 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link href="~/Assets/EternaTemplate/img/favicon.png" rel="icon">
+    <link href="~/Assets/EternaTemplate/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> *@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Raleway:wght@700&display=swap">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link href="~/Assets/EternaTemplate/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Assets/EternaTemplate/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Assets/EternaTemplate/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Assets/EternaTemplate/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Assets/EternaTemplate/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/Assets/EternaTemplate/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
     <environment names="Development">
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/Assets/EternaTemplate/css/style.css" asp-append-version="true">
+
     </environment>
     <environment names="Production">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/Assets/EternaTemplate/css/style.min.css" asp-append-version="true">
     </environment>
 
     @RenderSection("head", required: false)
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="~/">TAU</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav ml-auto">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden))
-                {
-                    @await Html.PartialAsync("RecursiveNavigation", item)
-                }
-            </ul>
+<header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="logo">
+            <a href="#">
+                <svg width="25mm" height=auto version="1.1" viewBox="0 0 62.429 20.052" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(-25.477 -78.548)" display="none">
+                        <rect x="20.501" y="72.216" width="72.999" height="32.184" fill="#eaa314" stroke-width=".26458"/>
+                        <g fill="#815300">
+                            <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m118.03 334.98c5.1246-9e-3 9.6651 0.0608 9.6651 0.0608l-2e-3 8.4251s-7.9914-0.03-9.6803 7e-3c-4.7617-1.3176-4.8999-7.4748 0.017-8.4928z" stroke-width=".52093" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m127.66 329.91s-12.358 0.0939-13.504-0.0248c-5.2018-0.8813-5.2018-7.8813-0.23034-8.3562 2.3476-0.19483 13.768-0.13669 13.768-0.13669z" stroke-width=".60541" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m127.54 316.75s-13.751-0.12291-18.412-0.0563c-4.794-0.73707-5.101-7.6981 0.27489-8.2053 4.4436 0.0587 18.181-0.0233 18.181-0.0233z" stroke-width=".71754" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m130.41 348.76 0.0927 7.2958 15.524-0.0391z" stroke-width=".41982" style="shape-inside:url(#rect4457);white-space:pre"/>
+                        </g>
+                    </g>
+                    <g transform="translate(-25.477 -78.548)">
+                        <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m118.03 334.98c5.1246-9e-3 9.6651 0.0608 9.6651 0.0608l-2e-3 8.4251s-7.9914-0.03-9.6803 7e-3c-4.7617-1.3176-4.8999-7.4748 0.017-8.4928z" fill="#815300" stroke-width=".52093" style="shape-inside:url(#rect4457);white-space:pre"/>
+                        <g fill="#545454">
+                            <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m127.66 329.91s-12.358 0.0939-13.504-0.0248c-5.2018-0.8813-5.2018-7.8813-0.23034-8.3562 2.3476-0.19483 13.768-0.13669 13.768-0.13669z" stroke-width=".60541" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m127.54 316.75s-13.751-0.12291-18.412-0.0563c-4.794-0.73707-5.101-7.6981 0.27489-8.2053 4.4436 0.0587 18.181-0.0233 18.181-0.0233z" stroke-width=".71754" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <path transform="matrix(.26458 0 0 .26458 -1.3229 .52917)" d="m118.03 334.98c5.1246-9e-3 9.6651 0.0608 9.6651 0.0608l-2e-3 8.4251s-7.9914-0.03-9.6803 7e-3c-4.7617-1.3176-4.8999-7.4748 0.017-8.4928z" stroke-width=".52093" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <path d="m32.61 92.518-3.99e-4 2.2291s-1.1472-0.01648-1.4833-0.0067c-0.9476-0.3486-0.96825-1.9345 0.01027-2.2039 0 0 0.16939-0.0026 1.4734-0.01858z" stroke-width=".11953" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <path d="m33.584 92.518 3.99e-4 2.2291s1.1472-0.01648 1.4833-0.0067c0.9476-0.3486 0.96825-1.9345-0.01027-2.2039 0 0-0.16939-0.0026-1.4734-0.01858z" stroke-width=".11953" style="shape-inside:url(#rect4457);white-space:pre"/>
+                            <a transform="translate(-1.3229 .52917)">
+                                <g transform="scale(.26458)" style="shape-inside:url(#rect4457);white-space:pre" aria-label="TEAM">
+                                    <g fill="#545454">
+                                        <path d="m146 304s-37.143-0.0392-41.205-0.0528c-4.5143-0.83853-4.8988-8.5407 0.20495-8.9472 16.876-0.10349 29.944 0.0242 40.818 0.11071h0.0417c5.1406 0.88925 5.1406 7.8892 0.14055 8.8892z" stroke-width="1.046"/>
+                                        <path d="m160.24 299.63 0.125 52.625c0 2.2936 1.875 4.2049 4.1667 4.2049l35.583-0.0425h0.0417c2.2917 0 4.1667-1.9113 4.1667-4.2474s-1.875-4.2474-4.1667-4.2474h-0.0417l-31.417 0.0425-0.0417-17.966 16.297 0.0261c2.8617 0.12669 4.435-2.5018 4.1942-4.5744-0.26648-2.2927-1.3498-3.8615-4.2724-3.8621l-16.26-0.1692-0.0417-17.414 31.542 0.0425h0.0417c2.2917 0 4.1667-1.9113 4.1667-4.2474s-1.875-4.2474-4.1667-4.2474h-0.0417l-35.708-0.0425c-2.2917 0-4.1667 1.8688-4.1667 4.1199z" stroke-width="1.0096"/>
+                                        <path d="m236.73 297.37-22.875 53.25c-0.20833 0.45833-0.375 1.2083-0.375 1.7083 0 2.2917 1.875 4.1667 4.1667 4.1667 1.5417 0 3.25-1.1667 3.8333-2.5833l7.2917-16.917 23.75 0.33333 7.125 16.542c0.58333 1.4167 2.3333 2.5417 3.875 2.5417 2.2917 0 4.1667-1.875 4.1667-4.1667 0-0.5-0.16666-1.25-0.37499-1.7083l-22.917-53.167c-0.58334-1.375-2.3333-2.5-3.8333-2.5-1.5417 0-3.25 1.125-3.8333 2.5zm3.8333 12.208 8.3333 19.333-16.542-0.20834z"/>
+                                    </g>
+                                    <path d="m287 351.39v-0.0417l-0.125-37.208 18.375 30.042c0.83334 1.2917 2.125 2 3.7083 2 1.5 0 2.875-1.125 3.5-2.125l16.375-29.75 0.099 48.642s-219.79 0.0378-224.03 0.028c-4.2705 0.49309-3.8468 6.722 0.0995 7.0205 2.1432 0.051 204.71 0.57203 221.67 0.66259 4.3786-0.0687 7.1397-0.87403 9.209-3.4104 1.8043-2.2114 1.3014-8.4628 1.3014-8.4628l-0.0158-59.355c-6.6e-4 -2.4583-2.0833-4.1667-4.4583-4.1667-1.4583 0-2.625 0.83333-3.375 2.0833l-20.625 36.417-22.292-36.375c-0.75-1.5417-2.2083-2.3333-4.125-2.3333-1.25 0-2.25 0.625-2.875 1.625-0.5 0.79167-0.91667 1.5-0.91667 2.25 0 0.29167 0 0.375 0.0417 0.75l0.125 51.708c0.33825 6.6073 8.037 6.1354 8.3334 4e-5z" fill="#e96b56"/>
+                                </g>
+                            </a>
+                        </g>
+                        <text transform="scale(.26458)" fill="#000000" font-family="sans-serif" font-size="40px" style="line-height:1.25;shape-inside:url(#rect42107);white-space:pre" xml:space="preserve"/>
+                    </g>
+                    <g transform="translate(-25.477 -78.548)" display="none" fill="#815300">
+                        <rect x="26.968" y="83.155" width="7.7029" height="2.391" ry="1.1955" stroke-width=".28565"/>
+                        <rect x="28.531" y="87.711" width="7.7389" height="2.391" ry="1.1955" stroke-width=".28631"/>
+                        <rect x="29.925" y="92.505" width="7.7029" height="2.391" ry="1.1955" stroke-width=".28565"/>
+                        <rect x="30.605" y="81.197" width="2.2266" height="13.575" ry="0" display="inline" stroke-width=".27976"/>
+                    </g>
+                </svg>
+            </a>
         </div>
+        <nav id="navbar" class="navbar navbar-expand-md navbar-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    @foreach (var item in (await WebApp.Site.Sitemap.ForUserAsync(User, Auth)).Where(i => !i.IsHidden))
+                    {
+                        @await Html.PartialAsync("RecursiveNavigation", item)
+                    }
+                </ul>
+            </div>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+
     </div>
-</nav>
+</header>
 
-<script src="https://www.google.com/recaptcha/api.js?render=@GoogleRecaptchaConfig.Value.SiteKey"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+@if (@WebApp.CurrentPage.TypeId != "HomePage")
+{
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>@Html.Raw(WebApp.CurrentPage.Title)</li>
+            </ol>
+            <h2>@Html.Raw(WebApp.CurrentPage.Title)</h2>
 
+        </div>
+    </section>
+}
 
 @RenderBody()
 
+<footer id="footer">
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li>
+                            <i class="bx bx-chevron-right"></i> <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <i class="bx bx-chevron-right"></i> <a href="#">About us</a>
+                        </li>
+                        <li>
+                            <i class="bx bx-chevron-right"></i> <a href="#">TEAM product suite</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li>
+                            <i class="bx bx-chevron-right"></i> <a href="#">Managed services</a>
+                        </li>
+                        <li>
+                            <i class="bx bx-chevron-right"></i> <a href="#">Web Development</a>
+                        </li>
+                        <li>
+                            <i class="bx bx-chevron-right"></i> <a href="#">Professional services</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>
+                        1585 Broadway <br>
+                        New York, NY, 10036,<br>
+                        United States <br>
+                        <strong>Email:</strong> hello@team.io<br>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://www.google.com/recaptcha/api.js?render=@GoogleRecaptchaConfig.Value.SiteKey"></script>
+@* <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> *@
+@* <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> *@
+@* <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> *@
+
+<script src="~/Assets/EternaTemplate/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="~/Assets/EternaTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Assets/EternaTemplate/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="~/Assets/EternaTemplate/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="~/Assets/EternaTemplate/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="~/Assets/EternaTemplate/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="~/Assets/EternaTemplate/vendor/php-email-form/validate.js"></script>
+<script src="Assets/EternaTemplate/js/main.js"></script>
+
+@await RenderSectionAsync("script", false)
 </body>
 </html>
