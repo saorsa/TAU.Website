@@ -1,97 +1,113 @@
 @model TAU.Website.Models.Pages.HomePage
-
-<section id="hero">
-    <div class="hero-container">
-        <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-            <div class="carousel-inner" role="listbox">
-                @if (Model.Carousel.Count > 0)
-                {
-                    <div class="carousel-inner">
-                        @foreach (var news in Model.Carousel)
-                        {
-                            <div class="carousel-item @(@Model.Carousel.IndexOf(news) == 0 ? "active" : "")" style="background-image: url(@Url.Content(news.BackgroundImage.Media.PublicUrl))">
-                                <div class="carousel-container">
-                                    <div class="carousel-content">
-                                        <h2 class="animate__animated animate__fadeInDown">@news.Title</h2>
-                                        <p class="animate__animated animate__fadeInUp">@news.Content</p>
-                                        @if (news.ReadMoreLink.Value != null)
-                                        {
-                                            <a href=@Url.Content(news.ReadMoreLink.Value) class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
-                                        }
+    
+    @if (Model.Carousel.Count > 0)
+    {
+        <section id="hero">
+            <div class="hero-container">
+                <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <ol class="carousel-indicators" id="hero-carousel-indicators">
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-inner">
+                            @foreach (var news in Model.Carousel)
+                            {
+                                <div class="carousel-item @(Model.Carousel.IndexOf(news) == 0 ? "active" : "")" style="background-image: url(@Url.Content(news.BackgroundImage.Media.PublicUrl))">
+                                    <div class="carousel-container">
+                                        <div class="carousel-content">
+                                            <h2 class="animate__animated animate__fadeInDown">@news.Title</h2>
+                                            <p class="animate__animated animate__fadeInUp">@news.Content</p>
+                                            @if (news.ReadMoreLink.Value != null)
+                                            {
+                                                <a href=@Url.Content(news.ReadMoreLink.Value) class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+                                            }
+                                        </div>
                                     </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+                    </a>
+
+                    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+    }
+<main id="main">
+    
+    @if (Model.Products is not null && Model.Products.Count > 0)
+    {
+        <section id="featured" class="featured">
+            <div class="container">
+                <div class="row">
+                    @{
+                        foreach (var product in Model.Products)
+                        {
+                            var cardClass = "";
+                            switch (Model.Products.IndexOf(product))
+                            {
+                                case 0:
+                                    cardClass = "";
+                                    break;
+                                case 1:
+                                    cardClass = "mt-4 mt-md-0";
+                                    break;
+                                case 2:
+                                    cardClass = "mt-4 mt-lg-0";
+                                    break;
+                                default:
+                                    cardClass = "mt-4";
+                                    break;
+                            }
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch @cardClass">
+                                <div class="icon-box">
+                                    <div class="icon">
+                                        <i class="@(product.Icon.Value ?? "bx bxl-dribbble")"></i>
+                                    </div>
+                                    <h4>
+                                        <a href=@Url.Content(product.Url)>@product.Title</a>
+                                    </h4>
+                                    <p>@Html.Raw(product.Text)</p>
                                 </div>
                             </div>
                         }
-                    </div>
-                }
-            </div>
-
-            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-            </a>
-
-            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-            </a>
-
-        </div>
-    </div>
-</section>
-
-<section id="featured" class="featured">
-    <div class="container">
-        <div class="row">
-            @{
-                foreach (var product in @Model.Products)
-                {
-                    var cardClass = "";
-                    switch (Model.Products.IndexOf(product))
-                    {
-                        case 0:
-                            cardClass = "";
-                            break;
-                        case 1:
-                            cardClass = "mt-4 mt-md-0";
-                            break;
-                        case 2:
-                            cardClass = "mt-4 mt-lg-0";
-                            break;
-                        default:
-                            cardClass = "mt-4";
-                            break;
                     }
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch @cardClass">
-                        <div class="icon-box">
-                            <div class="icon">
-                                <i class="@(product.Icon.Value ?? "bx bxl-dribbble")"></i>
-                            </div>
-                            <h4>
-                                <a href=@Url.Content(product.Url)>@product.Title</a>
-                            </h4>
-                            <p>@Html.Raw(product.Text)</p>
-                        </div>
+                </div>
+            </div>
+        </section>
+    }
+
+    <section id="freetext" class="clients">
+        <div class="container">
+            <div class="section-title">
+                <h2>@Model.HomePageText.Title</h2>
+                <p>@Html.Raw(Model.HomePageText.Body)</p>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="about">
+        @foreach (var block in Model.Blocks)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="block col-lg-6 @block.CssName()">
+                        @Html.DisplayFor(m => block, block.GetType().Name)
                     </div>
-                }
-            }
-        </div>
-    </div>
-</section>
-
-<section id="freetext" class="clients">
-    <div class="container">
-        <div class="section-title">
-            <h2>@Model.HomePageText.Title</h2>
-            <p>@Html.Raw(Model.HomePageText.Body)</p>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="contact">
-    <div class="container pt-md-4">
-        <div class="row">
+                </div>
+            </div>
+        }
+        </section>
+    <section id="contact" class="contact">
+        <div class="container pt-md-4">
+            <div class="row">
                 @await Html.PartialAsync("ContactForm")
+            </div>
         </div>
-    </div>
-</section>
-
+    </section>
+</main>
