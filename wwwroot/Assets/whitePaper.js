@@ -15,9 +15,9 @@ function submitWhitePaper() {
     if (!form.checkValidity()) {
         return;
     }
-    
+
     var siteKey = document.getElementById("whitePaper").getAttribute("data-siteKey");
-    
+
     grecaptcha.ready(function () {
         grecaptcha.execute(siteKey, {action: 'submit'}).then(function (token) {
             $("#whitePaperReCaptchaToken").val(token);

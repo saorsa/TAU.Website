@@ -1,40 +1,40 @@
 @model TAU.Website.Models.Pages.ManagedServicesPage
 
 <section id="services" class="services">
-        <div class="container pt-md-4">
-            <div class="row">
-                @{
-                    foreach (var service in @Model.ManagedServices)
+    <div class="container pt-md-4">
+        <div class="row">
+            @{
+                foreach (var service in Model.ManagedServices)
+                {
+                    var cardClass = "";
+                    switch (Model.ManagedServices.IndexOf(service))
                     {
-                        var cardClass = "";
-                        switch (Model.ManagedServices.IndexOf(service))
-                        {
-                            case 0:
-                                cardClass = "";
-                                break;
-                            case 1:
-                                cardClass = "mt-4 mt-md-0";
-                                break;
-                            case 2:
-                                cardClass = "mt-4 mt-lg-0";
-                                break;
-                            default:
-                                cardClass = "mt-4";
-                                break;
-                        }
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch @cardClass">
-                            <div class="icon-box">
-                                <div class="icon">
-                                    <i class="@(service.Icon.Value ?? "bx bxl-dribbble")"></i>
-                                </div>
-                                <h4>
-                                    <a href=@Url.Content(service.Url)>@service.Title</a>
-                                </h4>
-                                <p>@Html.Raw(service.Text)</p>
-                            </div>
-                        </div>
+                        case 0:
+                            cardClass = "";
+                            break;
+                        case 1:
+                            cardClass = "mt-4 mt-md-0";
+                            break;
+                        case 2:
+                            cardClass = "mt-4 mt-lg-0";
+                            break;
+                        default:
+                            cardClass = "mt-4";
+                            break;
                     }
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch @cardClass">
+                        <div class="icon-box">
+                            <div class="icon">
+                                <i class="@(service.Icon.Value ?? "bx bxl-dribbble")"></i>
+                            </div>
+                            <h4>
+                                <a href=@Url.Content(service.Url)>@service.Title</a>
+                            </h4>
+                            <p>@Html.Raw(service.Text)</p>
+                        </div>
+                    </div>
                 }
-            </div>
+            }
         </div>
+    </div>
 </section>

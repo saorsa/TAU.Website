@@ -1,9 +1,9 @@
-namespace TAU.Website.Services;
-
 using System.Net;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TAU.Website.Models.GoogleReCaptchaResponse;
+
+namespace TAU.Website.Services;
 
 public class GoogleReCaptchaService
 {
@@ -22,10 +22,7 @@ public class GoogleReCaptchaService
         using (var client = new HttpClient())
         {
             var httpResult = await client.GetAsync(url);
-            if (httpResult.StatusCode != HttpStatusCode.OK)
-            {
-                return false;
-            }
+            if (httpResult.StatusCode != HttpStatusCode.OK) return false;
 
             var responseString = await httpResult.Content.ReadAsStringAsync();
 

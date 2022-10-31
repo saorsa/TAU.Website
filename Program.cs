@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Piranha;
-using Piranha.AttributeBuilder;
 using Piranha.AspNetCore.Identity.SQLite;
+using Piranha.AttributeBuilder;
 using Piranha.Data.EF.SQLite;
+using Piranha.Local;
 using Piranha.Manager.Editor;
 using TAU.Website;
 using TAU.Website.Data;
@@ -26,7 +27,7 @@ builder.AddPiranha(options =>
     options.UseCms();
     options.UseManager();
 
-    options.UseFileStorage(naming: Piranha.Local.FileStorageNaming.UniqueFolderNames);
+    options.UseFileStorage(naming: FileStorageNaming.UniqueFolderNames);
     options.UseImageSharp();
     options.UseTinyMCE();
     options.UseMemoryCache();
@@ -59,15 +60,12 @@ builder.Services.AddTransient<IWhitePaperService, WhitePaperService>();
 
 builder.Services.AddDbContext<TauDbContext>(options => options.UseSqlite(connectionString));
 
-builder.Services.AddAutoMapper(typeof(Program)); 
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
+if (app.Environment.IsDevelopment()) app.UseDeveloperExceptionPage();
 
 app.UsePiranha(options =>
 {
@@ -76,7 +74,7 @@ app.UsePiranha(options =>
 
     // Register custom components
     App.Blocks.Register<NewsPaperBlock>();
-    App.Blocks.Register<WhitePaperBlock>(); 
+    App.Blocks.Register<WhitePaperBlock>();
     App.Modules.Manager().Scripts.Add("~/whitePaper-block.js");
 
     // Build content types

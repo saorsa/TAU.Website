@@ -1,5 +1,5 @@
-@using Microsoft.Extensions.Options
 @using TAU.Website
+@using Microsoft.Extensions.Options
 @inject IOptions<GoogleReCaptchaConfig> GoogleRecaptchaConfig
 
 <!doctype html>
@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="~/Assets/EternaTemplate/css/style.min.css" asp-append-version="true">
     </environment>
 
-    @RenderSection("head", required: false)
+    @RenderSection("head", false)
 </head>
 
 <body>
@@ -44,7 +44,7 @@
     <div class="container d-flex justify-content-between align-items-center">
         <div class="logo">
             <a href="#">
-                <svg width="25mm" height=auto version="1.1" viewBox="0 0 62.429 20.052" xmlns="http://www.w3.org/2000/svg">
+                <svg width="30mm" height="auto" version="1.1" viewBox="0 0 62.429 20.052" xmlns="http://www.w3.org/2000/svg">
                     <g transform="translate(-25.477 -78.548)" display="none">
                         <rect x="20.501" y="72.216" width="72.999" height="32.184" fill="#eaa314" stroke-width=".26458"/>
                         <g fill="#815300">
@@ -103,7 +103,7 @@
     </div>
 </header>
 
-@if (@WebApp.CurrentPage.TypeId != "HomePage")
+@if (WebApp.CurrentPage.TypeId != "HomePage")
 {
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">

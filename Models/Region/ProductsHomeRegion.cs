@@ -1,7 +1,7 @@
-namespace TAU.Website.Models.Region;
-
 using Piranha.Extend;
 using Piranha.Extend.Fields;
+
+namespace TAU.Website.Models.Region;
 
 public class ProductsHomeRegion
 {

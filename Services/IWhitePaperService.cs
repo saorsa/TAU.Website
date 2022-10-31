@@ -1,8 +1,6 @@
-using TAU.Website.Models;
+using TAU.Website.Models.Custom_Blocks;
 
 namespace TAU.Website.Services;
-
-using TAU.Website.Models.Custom_Blocks;
 
 public interface IWhitePaperService
 {

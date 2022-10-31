@@ -1,19 +1,17 @@
-using TAU.Website.Models;
-
-namespace TAU.Website.Controllers;
-
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using TAU.Website.Models.Custom_Blocks;
 using TAU.Website.Services;
 
+namespace TAU.Website.Controllers;
+
 [Route("api/[controller]")]
 public class WhitePaperController : Controller
 {
     private readonly IApi _api;
-    private readonly IModelLoader _loader;
     private readonly GoogleReCaptchaService _googleReCaptchaService;
+    private readonly IModelLoader _loader;
     private readonly IWhitePaperService _whitePaperService;
 
     public WhitePaperController(IApi api,
@@ -32,11 +30,11 @@ public class WhitePaperController : Controller
     {
         if (ModelState.IsValid)
         {
-            var googleReCaptchaResult = await this._googleReCaptchaService.Verify(whitePaperBlock.Token);
+            var googleReCaptchaResult = await _googleReCaptchaService.Verify(whitePaperBlock.Token);
             if (googleReCaptchaResult)
             {
-                await this._whitePaperService.CreateWhitePaperDownloadAsync(whitePaperBlock);
-                var whitePaperUrl = await this._whitePaperService.GetWhitePaperUrlAsync(pageId, whitePaperBlock.Id);
+                await _whitePaperService.CreateWhitePaperDownloadAsync(whitePaperBlock);
+                var whitePaperUrl = await _whitePaperService.GetWhitePaperUrlAsync(pageId, whitePaperBlock.Id);
                 return Ok(whitePaperUrl);
             }
         }

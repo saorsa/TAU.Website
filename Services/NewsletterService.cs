@@ -1,11 +1,9 @@
-using TAU.Website.Models;
-
-namespace TAU.Website.Services;
-
 using AutoMapper;
 using TAU.Website.Data;
 using TAU.Website.Data.Entities;
-using TAU.Website.Models.Custom_Blocks;
+using TAU.Website.Models;
+
+namespace TAU.Website.Services;
 
 public class NewsletterService : INewsletterService
 {
@@ -14,17 +12,17 @@ public class NewsletterService : INewsletterService
 
     public NewsletterService(TauDbContext dbContext, IMapper mapper)
     {
-        this._dbContext = dbContext;
+        _dbContext = dbContext;
         _mapper = mapper;
     }
 
     public async Task<NewsPaperBlock> CreateNewsletterAsync(NewsPaperBlock newsletter)
     {
-        var newNewsletter = this._mapper.Map<NewsPaperBlock, Newsletter>(newsletter);
+        var newNewsletter = _mapper.Map<NewsPaperBlock, Newsletter>(newsletter);
 
-        await this._dbContext.Newsletters.AddAsync(newNewsletter);
-        await this._dbContext.SaveChangesAsync();
+        await _dbContext.Newsletters.AddAsync(newNewsletter);
+        await _dbContext.SaveChangesAsync();
 
-        return this._mapper.Map<Newsletter, NewsPaperBlock>(newNewsletter);
+        return _mapper.Map<Newsletter, NewsPaperBlock>(newNewsletter);
     }
 }

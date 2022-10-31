@@ -1,6 +1,6 @@
 @model Piranha.Models.SitemapItem
 @{
-    if (@Model.Items.Count > 0)
+    if (Model.Items.Count > 0)
     {
         <li class="@(Model.ParentId == null ? "nav-item dropdown" : "nav-item")">
             @if (Model.ParentId == null)

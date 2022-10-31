@@ -1,8 +1,8 @@
-namespace TAU.Website.Models.Custom_Blocks;
-
 using System.ComponentModel.DataAnnotations;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
+
+namespace TAU.Website.Models.Custom_Blocks;
 
 [BlockType(Name = "WhitePaper", Icon = "", Category = "Content", Component = "whitePaper-block")]
 public class WhitePaperBlock : Block

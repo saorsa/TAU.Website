@@ -2,17 +2,17 @@ function submitNewsletter() {
     var form = $("#newsletterForm")[0];
     form.classList.add('was-validated')
 
-    if (!form.checkValidity()){
+    if (!form.checkValidity()) {
         return;
     }
 
     var siteKey = document.getElementById("newsletter").getAttribute("data-siteKey");
-    
-    grecaptcha.ready(function() {
-        grecaptcha.execute(siteKey, {action: 'submit'}).then(function(token) {
+
+    grecaptcha.ready(function () {
+        grecaptcha.execute(siteKey, {action: 'submit'}).then(function (token) {
             $("#newsLetterReCaptchaToken").val(token);
             var data = $("#newsletterForm").serialize();
-            var statusMessage ="";
+            var statusMessage = "";
             $.ajax({
                 type: 'POST',
                 url: '/Newsletter/PostNewsletter',

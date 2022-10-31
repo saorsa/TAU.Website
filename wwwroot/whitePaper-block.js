@@ -24,12 +24,12 @@ Vue.component('whitePaper-block', {
                 }
             };
         },
-        onBlur: function(e) {
-            
+        onBlur: function (e) {
+
             this.$emit('update-title', {
                 uid: this.uid,
                 title: e.target.innerText
             });
         }
-    }      
+    }
 });

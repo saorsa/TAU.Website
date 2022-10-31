@@ -1,9 +1,7 @@
-using TAU.Website.Models.Custom_Blocks;
-
-namespace TAU.Website.Data;
-
 using Microsoft.EntityFrameworkCore;
 using TAU.Website.Data.Entities;
+
+namespace TAU.Website.Data;
 
 public class TauDbContext : DbContext
 {
