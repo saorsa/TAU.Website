@@ -1,5 +1,5 @@
 @model TAU.Website.Models.Pages.HomePage
-    
+@section head { @WebApp.MetaTags(Model) }
     @if (Model.Carousel.Count > 0)
     {
         <section id="hero">

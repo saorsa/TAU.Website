@@ -7,36 +7,22 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
     <title>@ViewData["Title"]</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
     <link href="~/Assets/EternaTemplate/img/favicon.png" rel="icon">
     <link href="~/Assets/EternaTemplate/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> *@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Raleway:wght@700&display=swap">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
     <link href="~/Assets/EternaTemplate/vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="~/Assets/EternaTemplate/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Assets/EternaTemplate/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="~/Assets/EternaTemplate/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="~/Assets/EternaTemplate/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="~/Assets/EternaTemplate/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <environment names="Development">
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
-        <link rel="stylesheet" href="~/Assets/EternaTemplate/css/style.css" asp-append-version="true">
-
-    </environment>
-    <environment names="Production">
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true">
-        <link rel="stylesheet" href="~/Assets/EternaTemplate/css/style.min.css" asp-append-version="true">
-    </environment>
-
-    @RenderSection("head", false)
+    <environment names="Development"><link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Assets/EternaTemplate/css/style.css" asp-append-version="true"></environment>
+    <environment names="Production"><link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Assets/EternaTemplate/css/style.min.css" asp-append-version="true"></environment>
+    @await RenderSectionAsync("head", false)
 </head>
 
 <body>
