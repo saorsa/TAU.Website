@@ -10,7 +10,7 @@
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-inner">
                             @foreach (var news in Model.Carousel)
-                            {
+                            {   
                                 <div class="carousel-item @(Model.Carousel.IndexOf(news) == 0 ? "active" : "")" style="background-image: url(@Url.Content(news.BackgroundImage.Media.PublicUrl))">
                                     <div class="carousel-container">
                                         <div class="carousel-content">
@@ -41,47 +41,6 @@
     }
 <main id="main">
     
-    @if (Model.Products is not null && Model.Products.Count > 0)
-    {
-        <section id="featured" class="featured">
-            <div class="container">
-                <div class="row">
-                    @{
-                        foreach (var product in Model.Products)
-                        {
-                            var cardClass = "";
-                            switch (Model.Products.IndexOf(product))
-                            {
-                                case 0:
-                                    cardClass = "";
-                                    break;
-                                case 1:
-                                    cardClass = "mt-4 mt-md-0";
-                                    break;
-                                case 2:
-                                    cardClass = "mt-4 mt-lg-0";
-                                    break;
-                                default:
-                                    cardClass = "mt-4";
-                                    break;
-                            }
-                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch @cardClass">
-                                <div class="icon-box">
-                                    <div class="icon">
-                                        <i class="@(product.Icon.Value ?? "bx bxl-dribbble")"></i>
-                                    </div>
-                                    <h4>
-                                        <a href=@Url.Content(product.Url)>@product.Title</a>
-                                    </h4>
-                                    <p>@Html.Raw(product.Text)</p>
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-        </section>
-    }
 
     <section id="freetext" class="clients">
         <div class="container">
@@ -91,6 +50,47 @@
             </div>
         </div>
     </section>
+    @if (Model.Products is not null && Model.Products.Count > 0)
+        {
+            <section id="featured" class="featured">
+                <div class="container">
+                    <div class="row">
+                        @{
+                            foreach (var product in Model.Products)
+                            {
+                                var cardClass = "";
+                                switch (Model.Products.IndexOf(product))
+                                {
+                                    case 0:
+                                        cardClass = "";
+                                        break;
+                                    case 1:
+                                        cardClass = "mt-4 mt-md-0";
+                                        break;
+                                    case 2:
+                                        cardClass = "mt-4 mt-lg-0";
+                                        break;
+                                    default:
+                                        cardClass = "mt-4";
+                                        break;
+                                }
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch @cardClass">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <i class="@(product.Icon.Value ?? "bx bxl-dribbble")"></i>
+                                        </div>
+                                        <h3>
+                                            <a href="@Url.Content(product.Url)">@product.Title</a>
+                                        </h3>
+                                        <p>@Html.Raw(product.Text)</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </section>
+        }
     <section id="about" class="about">
         @foreach (var block in Model.Blocks)
         {
