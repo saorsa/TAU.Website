@@ -1,9 +1,9 @@
 {
-  "name": "razorweb",
+  "name": "tau",
   "version": "8.3.0",
-  "description": "Piranha CMS Web Template For Razor Pages",
+  "description": "TAU Enterprise website",
   "main": "index.js",
-  "author": "Piranha CMS",
+  "author": "TAU Enterprise",
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^5.1.3",
