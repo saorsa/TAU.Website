@@ -1,4 +1,4 @@
-function submitNewsletter() {
+function submitNewsletter() { // eslint-disable-line
     var form = $("#newsletterForm")[0];
     form.classList.add('was-validated')
 
@@ -7,7 +7,8 @@ function submitNewsletter() {
     }
 
     var siteKey = document.getElementById("newsletter").getAttribute("data-siteKey");
-
+   
+    /*global grecaptcha*/
     grecaptcha.ready(function () {
         grecaptcha.execute(siteKey, {action: 'submit'}).then(function (token) {
             $("#newsLetterReCaptchaToken").val(token);
@@ -18,7 +19,7 @@ function submitNewsletter() {
                 url: '/Newsletter/PostNewsletter',
                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 data: data,
-                success: function (result) {
+                success: function () {
                     form.classList.remove('was-validated')
                     form.reset();
                     statusMessage = "Email saved.";

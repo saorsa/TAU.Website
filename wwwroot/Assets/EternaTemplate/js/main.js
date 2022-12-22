@@ -4,6 +4,8 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+
 (function() {
   "use strict";
 
@@ -97,7 +99,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function() {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -157,6 +159,8 @@
   /**
    * Clients Slider
    */
+  /*global Swiper*/
+
   new Swiper('.clients-slider', {
     speed: 400,
     loop: true,
@@ -193,12 +197,14 @@
   /**
    * Skills animation
    */
+  /*global Waypoint*/
+
   let skilsContent = select('.skills-content');
   if (skilsContent) {
     new Waypoint({
       element: skilsContent,
       offset: '80%',
-      handler: function(direction) {
+      handler: function() {
         let progress = select('.progress .progress-bar', true);
         progress.forEach((el) => {
           el.style.width = el.getAttribute('aria-valuenow') + '%'
@@ -210,6 +216,7 @@
   /**
    * Porfolio isotope and filter
    */
+  /*global Isotope*/
   window.addEventListener('load', () => {
     let portfolioContainer = select('.portfolio-container');
     if (portfolioContainer) {
@@ -238,7 +245,8 @@
   /**
    * Initiate portfolio lightbox 
    */
-  const portfolioLightbox = GLightbox({
+  /*global GLightbox*/
+  GLightbox({
     selector: '.portfolio-lightbox'
   });
 
@@ -262,6 +270,7 @@
   /**
    * Initiate Pure Counter 
    */
+  /*global PureCounter*/
   new PureCounter();
 
 })()

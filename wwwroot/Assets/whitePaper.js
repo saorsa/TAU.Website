@@ -1,4 +1,5 @@
-function displayWhitePaperForm() {
+
+function displayWhitePaperForm() { // eslint-disable-line
     var form = $("#whitePaperForm")[0]
     var modal = $('#whitePaperModal').modal('show');
 
@@ -9,7 +10,7 @@ function displayWhitePaperForm() {
     });
 }
 
-function submitWhitePaper() {
+function submitWhitePaper() { // eslint-disable-line
     var form = $("#whitePaperForm")[0];
     form.classList.add('was-validated')
     if (!form.checkValidity()) {
@@ -18,7 +19,8 @@ function submitWhitePaper() {
 
     var siteKey = document.getElementById("whitePaper").getAttribute("data-siteKey");
 
-    grecaptcha.ready(function () {
+    /*global grecaptcha*/
+    grecaptcha.ready(function () { 
         grecaptcha.execute(siteKey, {action: 'submit'}).then(function (token) {
             $("#whitePaperReCaptchaToken").val(token);
             var data = $("#whitePaperForm").serialize();
@@ -43,7 +45,7 @@ function submitWhitePaper() {
     });
 }
 
-function closeModal() {
+function closeModal() { // eslint-disable-line
     var form = $("#whitePaperForm")[0];
     form.reset();
     form.classList.remove('was-validated')

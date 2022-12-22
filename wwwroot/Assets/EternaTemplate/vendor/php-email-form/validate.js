@@ -29,6 +29,7 @@
 
             if (recaptcha) {
                 if (typeof grecaptcha !== "undefined") {
+                    /*global grecaptcha*/
                     grecaptcha.ready(function () {
                         try {
                             grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
