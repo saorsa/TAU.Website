@@ -34,7 +34,7 @@ jobs:
       - name: Backup
         run: find "/var/www/" -maxdepth 1 -name tauwebsite  -type d -exec mv {} /var/www/tauwebsite-$(date +%m%d%Y-%S) \;
       - name: Deploy artifact
-        run: mv ~/actions-runner/_work/TAU.Website/TAU.Website/artifact /var/www/tauwebsite
+        run: mv /opt/actions-runner/_work/TAU.Website/TAU.Website/artifact /var/www/tauwebsite
 #      - name: Link images
 #        run: ln -s /var/www/tauwebsite/uploads /var/www/tauwebsite/wwwroot
 #      - name: Configure secrets
