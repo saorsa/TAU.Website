@@ -51,5 +51,5 @@ jobs:
 #          sed -i.bak -re "s/(.+)EmailPassword.+/\1EmailPassword\":\"${OUTGOINGEMAILSETTINGSPASSWORD}\",/" /var/www/heroes-cup/appsettings.json
 #          sed -i.bak -re "s/(.+)EmailServer.+/\1EmailServer\":\"${OUTGOINGEMAILSETTINGSSERVER}\",/" /var/www/heroes-cup/appsettings.json
       - name: Start service
-        run: sudo /bin/systemctl start kupatanageroite.service
+        run: sudo /bin/systemctl start tauwebsite.service
       
