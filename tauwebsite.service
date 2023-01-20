@@ -1,0 +1,13 @@
+[Unit]
+Description=tauwebsite
+
+[Service]
+WorkingDirectory=/var/www/tauwebsite
+ExecStart=/usr/bin/dotnet /var/www/tauwebsite/TAU.Website.dll
+Restart=always
+RestartSec=10
+SyslogIdentifier=tauwebsite
+User=ubuntu
+Environment=ASPNETCORE_ENVIRONMENT=Production
+[Install]
+WantedBy=multi-user.target
