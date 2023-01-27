@@ -32,9 +32,9 @@
 
     <ItemGroup>
         <Folder Include="Views\Cms\Pages"/>
-        <Folder Include="wwwroot\Assets\EternaTemplate\css"/>
-        <Folder Include="wwwroot\css"/>
-        <Folder Include="wwwroot\*"/>
+<!--        <Folder Include="wwwroot\Assets\EternaTemplate\css"/>-->
+<!--        <Folder Include="wwwroot\css"/>-->
+        <None Include="wwwroot\**\*" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
     <ItemGroup>
