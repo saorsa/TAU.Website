@@ -17,10 +17,10 @@ jobs:
           dotnet-version: 6.0.x
       - name: Build
         run: dotnet build --configuration Release
-      - name: Move db to artifact folder
-        run: mv piranha.db bin/Release/net6.0/
-      - name: Move wwwroot to artifact folder
-        run: mv wwwroot bin/Release/net6.0/
+#      - name: Move db to artifact folder
+#        run: mv piranha.db bin/Release/net6.0/
+#      - name: Move wwwroot to artifact folder
+#        run: mv wwwroot bin/Release/net6.0/
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
@@ -39,21 +39,6 @@ jobs:
         run: find "/var/www/" -maxdepth 1 -name tauwebsite  -type d -exec mv {} /var/www/tauwebsite-$(date +%m%d%Y-%S) \;
       - name: Deploy artifact
         run: mv /opt/actions-runner/_work/TAU.Website/TAU.Website/artifact /var/www/tauwebsite
-      #      - name: Link images
-      #        run: ln -s /var/www/tauwebsite/uploads /var/www/tauwebsite/wwwroot
-      #      - name: Configure secrets
-      #        env:
-      #          GOOGLERECAPTCHASITEKEY: ${{ secrets.GOOGLERECAPTCHASITEKEY }}
-      #          GOOGLERECAPTCHASITESECRET: ${{ secrets.GOOGLERECAPTCHASITESECRET }}
-      #          OUTGOINGEMAILSETTINGSACCOUNT: ${{ secrets.OUTGOINGEMAILSETTINGSACCOUNT }}
-      #          OUTGOINGEMAILSETTINGSPASSWORD: ${{ secrets.OUTGOINGEMAILSETTINGSPASSWORD }}
-      #          OUTGOINGEMAILSETTINGSSERVER: ${{ secrets.OUTGOINGEMAILSETTINGSSERVER }}
-      #        run: |
-      #          sed -i.bak -re "s/(.+)SiteKey.+/\1SiteKey\":\"${GOOGLERECAPTCHASITEKEY}\",/" /var/www/heroes-cup/appsettings.json
-      #          sed -i.bak -re "s/(.+)SecretKey.+/\1SecretKey\":\"${GOOGLERECAPTCHASITESECRET}\",/" /var/www/heroes-cup/appsettings.json
-      #          sed -i.bak -re "s/(.+)EmailAccount.+/\1EmailAccount\":\"${OUTGOINGEMAILSETTINGSACCOUNT}\",/" /var/www/heroes-cup/appsettings.json
-      #          sed -i.bak -re "s/(.+)EmailPassword.+/\1EmailPassword\":\"${OUTGOINGEMAILSETTINGSPASSWORD}\",/" /var/www/heroes-cup/appsettings.json
-      #          sed -i.bak -re "s/(.+)EmailServer.+/\1EmailServer\":\"${OUTGOINGEMAILSETTINGSSERVER}\",/" /var/www/heroes-cup/appsettings.json
       - name: Start service
         run: sudo /bin/systemctl start tauwebsite.service
       
