@@ -17,14 +17,10 @@ jobs:
           dotnet-version: 6.0.x
       - name: Build
         run: dotnet build --configuration Release
-      - name: list
-        run: ls -ltra
       - name: Move db to artifact folder
         run: mv piranha.db bin/Release/net6.0/
       - name: Move wwwroot to artifact folder
         run: mv wwwroot bin/Release/net6.0/
-      - name: list
-        run: ls -ltra bin/Release/net6.0/
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
