@@ -17,28 +17,30 @@ jobs:
           dotnet-version: 6.0.x
       - name: Build
         run: dotnet build --configuration Release
+      - name: list build files
+        run: ls -ltra bin/Release/net6.0/
 #      - name: Move db to artifact folder
 #        run: mv piranha.db bin/Release/net6.0/
 #      - name: Move wwwroot to artifact folder
 #        run: mv wwwroot bin/Release/net6.0/
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.0
-        with:
-          path: bin/Release/net6.0/
-          if-no-files-found: error
-          retention-days: 1
-  publish:
-    needs: build
-    runs-on: self-hosted
-    steps:
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v3.0.0
-      - name: Stop service
-        run: sudo /bin/systemctl stop tauwebsite.service
-      - name: Backup
-        run: find "/var/www/" -maxdepth 1 -name tauwebsite  -type d -exec mv {} /var/www/tauwebsite-$(date +%m%d%Y-%S) \;
-      - name: Deploy artifact
-        run: mv /opt/actions-runner/_work/TAU.Website/TAU.Website/artifact /var/www/tauwebsite
-      - name: Start service
-        run: sudo /bin/systemctl start tauwebsite.service
+#      - name: Upload a Build Artifact
+#        uses: actions/upload-artifact@v3.1.0
+#        with:
+#          path: bin/Release/net6.0/
+#          if-no-files-found: error
+#          retention-days: 1
+#  publish:
+#    needs: build
+#    runs-on: self-hosted
+#    steps:
+#      - name: Download a Build Artifact
+#        uses: actions/download-artifact@v3.0.0
+#      - name: Stop service
+#        run: sudo /bin/systemctl stop tauwebsite.service
+#      - name: Backup
+#        run: find "/var/www/" -maxdepth 1 -name tauwebsite  -type d -exec mv {} /var/www/tauwebsite-$(date +%m%d%Y-%S) \;
+#      - name: Deploy artifact
+#        run: mv /opt/actions-runner/_work/TAU.Website/TAU.Website/artifact /var/www/tauwebsite
+#      - name: Start service
+#        run: sudo /bin/systemctl start tauwebsite.service
       

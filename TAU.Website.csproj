@@ -34,6 +34,7 @@
         <Folder Include="Views\Cms\Pages"/>
         <Folder Include="wwwroot\Assets\EternaTemplate\css"/>
         <Folder Include="wwwroot\css"/>
+        <Folder Include="wwwroot\*"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -75,5 +76,4 @@
     <Target Name="CopyDB" AfterTargets="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
         <Copy SourceFiles="piranha.db" DestinationFolder="$(OutDir)"/>
     </Target>
-
 </Project>
