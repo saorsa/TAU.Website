@@ -1,5 +1,16 @@
 @model TAU.Website.Models.Pages.ManagedServicesPage
-
+<section id="about" class="container">
+        @foreach (var block in Model.Blocks)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="block col-lg-12 @block.CssName()">
+                        @Html.DisplayFor(m => block, block.GetType().Name)
+                    </div>
+                </div>
+            </div>
+        }
+</section>
 <section id="services" class="services">
     <div class="container pt-md-4">
         <div class="row">
