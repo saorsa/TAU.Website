@@ -19,7 +19,6 @@ jobs:
         uses: nizarmah/auto-minify@v2.1
         with:
           directory: 'wwwroot/css'
-          overwrite: true
       - name: Build
         run: dotnet build --configuration Release
       - name: Upload a Build Artifact
