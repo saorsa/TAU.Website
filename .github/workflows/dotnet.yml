@@ -25,7 +25,7 @@ jobs:
 #        with:
 #          directory: 'wwwroot/css'
       - name: ll 
-          run: ll wwwroot/css/
+        run: ls -ltra wwwroot/css
       - name: cat min file
         run: cat wwwroot/css/site.min.css
 #      - name: Build
