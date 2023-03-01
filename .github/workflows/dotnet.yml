@@ -18,10 +18,14 @@ jobs:
           
       - name: Instal csso
         run: npm install csso
-      - name: Auto Minify
-        uses: nizarmah/auto-minify@v2.1
-        with:
-          directory: 'wwwroot/css'
+      - name: Minify css
+        run: csso wwwroot/css/site.css --output wwwroot/css/site.min.css --source-map inline
+#      - name: Auto Minify
+#        uses: nizarmah/auto-minify@v2.1
+#        with:
+#          directory: 'wwwroot/css'
+      - name: ll 
+          run: ll wwwroot/css/
       - name: cat min file
         run: cat wwwroot/css/site.min.css
 #      - name: Build
