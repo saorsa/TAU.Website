@@ -15,39 +15,30 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x
-          
-      - name: Instal csso
-        run: npm install --global csso
-      - name: Minify css
-        run: csso wwwroot/css/site.css --output wwwroot/css/site.min.css --source-map inline
-#      - name: Auto Minify
-#        uses: nizarmah/auto-minify@v2.1
-#        with:
-#          directory: 'wwwroot/css'
-      - name: ll 
-        run: ls -ltra wwwroot/css
-      - name: cat min file
-        run: cat wwwroot/css/site.min.css
-#      - name: Build
-#        run: dotnet build --configuration Release
-#      - name: Upload a Build Artifact
-#        uses: actions/upload-artifact@v3.1.0
-#        with:
-#          path: bin/Release/net6.0/
-#          if-no-files-found: error
-#          retention-days: 1
-#  publish:
-#    needs: build
-#    runs-on: self-hosted
-#    steps:
-#      - name: Download a Build Artifact
-#        uses: actions/download-artifact@v3.0.0
-#      - name: Stop service
-#        run: sudo /bin/systemctl stop tauwebsite.service
-#      - name: Backup
-#        run: find "/var/www/" -maxdepth 1 -name tauwebsite  -type d -exec mv {} /var/www/tauwebsite-$(date +%m%d%Y-%S) \;
-#      - name: Deploy artifact
-#        run: mv /opt/actions-runner/_work/TAU.Website/TAU.Website/artifact /var/www/tauwebsite
-#      - name: Start service
-#        run: sudo /bin/systemctl start tauwebsite.service
+      - name: Auto Minify
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'wwwroot/css'
+      - name: Build
+        run: dotnet build --configuration Release
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: bin/Release/net6.0/
+          if-no-files-found: error
+          retention-days: 1
+  publish:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+      - name: Stop service
+        run: sudo /bin/systemctl stop tauwebsite.service
+      - name: Backup
+        run: find "/var/www/" -maxdepth 1 -name tauwebsite  -type d -exec mv {} /var/www/tauwebsite-$(date +%m%d%Y-%S) \;
+      - name: Deploy artifact
+        run: mv /opt/actions-runner/_work/TAU.Website/TAU.Website/artifact /var/www/tauwebsite
+      - name: Start service
+        run: sudo /bin/systemctl start tauwebsite.service
       
