@@ -17,7 +17,7 @@ jobs:
           dotnet-version: 6.0.x
           
       - name: Instal csso
-        run: npm install csso
+        run: npm install --global csso
       - name: Minify css
         run: csso wwwroot/css/site.css --output wwwroot/css/site.min.css --source-map inline
 #      - name: Auto Minify
