@@ -1,4 +1,4 @@
-@import "inc/general";
+//@import "inc/general";
 @import "inc/type";
 @import "inc/buttons";
 @import "inc/cards";
@@ -7,6 +7,25 @@
 @import "inc/blocks";
 @import "inc/posts";
 @import "inc/pagination";
+
+body {
+}
+main {
+  padding: 2rem 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: #f94c3b;
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #f71f0a;
+}
 
 @media (min-width: 992px) {
   .dropdown-menu .dropdown-toggle:after {

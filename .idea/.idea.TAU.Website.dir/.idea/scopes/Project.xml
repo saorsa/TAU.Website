@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="Project" pattern="file:Styles/site.scss||file[rider.module]:*/" />
+  <scope name="Project" pattern="file:wwwroot/css/site.css" />
 </component>
